@@ -1,0 +1,130 @@
+:root {
+  --primary-color: #2938df;
+  --pressed-state-color: #404bbf;
+  --headings-herobackground-color: #2e2f42;
+  --body-text-color: #434455;
+  --background-color: #ffffff;
+  --light-background-color: #f4f4fd;
+  --accent-color: #e7e9fc;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+address {
+  font-style: normal;
+}
+li {
+  list-style: none;
+}
+
+img {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.list {
+  list-style: none;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+/* ====================== NAV BAR ======================  */
+nav {
+  /* position: fixed; */
+  z-index: 99;
+  width: 100%;
+  background: var(--primary-color);
+}
+.nav-wrapper {
+  /* position: relative; */
+  /* max-width: 1300px; */
+  padding: 0px 30px;
+  height: 70px;
+  line-height: 70px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.nav-links {
+  color: var(--background-color);
+}
+
+.nav-list {
+  display: flex;
+}
+
+.nav-item:not(:last-child) {
+  margin-right: 30px;
+}
+
+.data-container {
+  display: flex;
+  justify-content: center;
+}
+
+.movies-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adds space between items */
+  list-style: none;
+  padding: 0;
+}
+
+.movies-item {
+  flex: 1 1 calc(25% - 20px); /* Each item takes 25% width minus gap */
+  box-sizing: border-box;
+  max-width: calc(25% - 20px); /* Make sure it doesn't exceed 25% */
+}
+
+.movie-poster {
+  width: 100%;
+  height: auto;
+}
+
+.movie-title,
+.movie-description,
+.movie-rate {
+  text-align: center;
+}
