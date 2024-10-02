@@ -1,4 +1,11 @@
-import { refs } from '../refs';
+import { refs2 } from '../refs2';
+// const refs2 = {
+//   trendingSeriesContainer: document.querySelector('.series-data-container'),
+//   trendingSeriesList: document.querySelector('.series-list'),
+// };
+
+const trendingSeriesList = document.querySelector('.series-list');
+console.log(trendingSeriesList);
 
 const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
 
@@ -19,5 +26,6 @@ export function renderTrendingSeries(series) {
     )
     .join('');
 
-  refs.trendingSeriesList.insertAdjacentHTML('beforeend', trendingSeries);
+  trendingSeriesList.insertAdjacentHTML('beforeend', trendingSeries);
+  console.log(trendingSeriesList);
 }
