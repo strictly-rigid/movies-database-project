@@ -17,11 +17,11 @@ export function renderTrendingSeries(series) {
         overview,
         vote_average,
         poster_path,
-      }) => `<li class="movies-item">
-            <img src="${POSTER_URL}${poster_path}" class="movie-poster" alt="movie poster">
-            <h2 class="movie-title">${original_name}</h2>
-            <p class="movie-description">${overview}</p>
-            <span class="movie-rate">Rating: ${vote_average.toFixed(2)}</span>
+      }) => `<li class="series-item">
+            <img src="${POSTER_URL}${poster_path}" class="series-poster" alt="series poster">
+            <h2 class="series-title">${original_name}</h2>
+            <p class="series-description">${overview}</p>
+            <span class="series-rate">Rating: ${vote_average.toFixed(2)}</span>
           </li>`
     )
     .join('');

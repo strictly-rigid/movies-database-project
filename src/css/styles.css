@@ -99,32 +99,71 @@ nav {
   margin-right: 30px;
 }
 
-.data-container {
+.data-container,
+.series-data-container {
   display: flex;
   justify-content: center;
 }
 
-.movies-list {
+.movies-list,
+.series-list,
+.people-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Adds space between items */
+  gap: 20px;
   list-style: none;
   padding: 0;
 }
 
-.movies-item {
-  flex: 1 1 calc(25% - 20px); /* Each item takes 25% width minus gap */
+.movies-item,
+.series-item,
+.person-item {
+  flex: 1 1 calc(25% - 20px);
   box-sizing: border-box;
-  max-width: calc(25% - 20px); /* Make sure it doesn't exceed 25% */
+  max-width: calc(25% - 20px);
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08);
+  border-radius: 5px;
 }
 
-.movie-poster {
+.movie-poster,
+.series-poster,
+.person-image {
   width: 100%;
-  height: auto;
+  height: 450px;
+  border-radius: 5px;
+}
+
+.movie-info {
+  /* border: 2px solid var(--primary-color); */
 }
 
 .movie-title,
 .movie-description,
-.movie-rate {
+.movie-rate,
+.series-title,
+.series-description,
+.series-rate,
+.person-name,
+.person-gender,
+.popular-movies {
   text-align: center;
+}
+
+/* ====================== MOVIES PAGE ======================  */
+.movie-info {
+  padding: 20px;
+}
+
+.movie-rate {
+  font-weight: 600;
+}
+
+.movie-title {
+  margin-bottom: 10px;
+}
+
+.movie-description {
+  margin-bottom: 10px;
+  text-align: justify;
+  /* text-indent: 2em; */
 }

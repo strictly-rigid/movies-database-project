@@ -8,6 +8,6 @@ export async function fetchTrendingPeople(key, url, renderPeople) {
     const dataPeople = response.data.results;
     renderPeople(dataPeople);
   } catch (error) {
-    console.log('Error fetching trending series:', error.message);
+    console.log('Error fetching trending people:', error.message);
   }
 }
