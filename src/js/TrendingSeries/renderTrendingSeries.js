@@ -1,8 +1,4 @@
 import { refs2 } from '../refs2';
-// const refs2 = {
-//   trendingSeriesContainer: document.querySelector('.series-data-container'),
-//   trendingSeriesList: document.querySelector('.series-list'),
-// };
 
 const trendingSeriesList = document.querySelector('.series-list');
 console.log(trendingSeriesList);
@@ -26,6 +22,6 @@ export function renderTrendingSeries(series) {
     )
     .join('');
 
-  trendingSeriesList.insertAdjacentHTML('beforeend', trendingSeries);
-  console.log(trendingSeriesList);
+  seriesList.insertAdjacentHTML('beforeend', trendingSeries);
+  console.log(seriesList);
 }

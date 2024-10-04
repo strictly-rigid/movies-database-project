@@ -1,4 +1,5 @@
 export const refs2 = {
-  trendingSeriesContainer: document.querySelector('.series-data-container'),
-  trendingSeriesList: document.querySelector('.series-list'),
+  form: document.querySelector('.searh-for-series'),
+  seriesContainer: document.querySelector('.series-data-container'),
+  seriesList: document.querySelector('.series-list'),
 };
