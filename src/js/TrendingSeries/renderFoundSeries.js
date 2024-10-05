@@ -19,9 +19,9 @@ export function renderFoundSeries(foundSeries) {
       ({
         id,
         genre_ids,
-        original_title,
+        name,
         overview,
-        release_date,
+        first_air_date,
         vote_average,
         vote_count,
         poster_path,
@@ -31,12 +31,12 @@ export function renderFoundSeries(foundSeries) {
         return `<li class="movies-item" id=${id}>
             <img src="${POSTER_URL}${poster_path}" class="movie-poster" alt="movie poster">
             <div class="movie-info">
-            <h2 class="movie-title">${original_title}</h2>
+            <h2 class="movie-title">${name}</h2>
             <p class="movie-description">${overview}</p>
               <p class="movie-genres">Genres: ${
                 genreNames || 'Sorry, no genres available'
               }</p>
-                <p class="movie-genres">Release date: ${release_date}</p>
+                <p class="movie-genres">Premiere date: ${first_air_date}</p>
             <span class="movie-rate">Rating: ${vote_average.toFixed(2)}</span> 
                  <span class="movie-rate-count">Total votes: ${vote_count}</span> 
           </div>     

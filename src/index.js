@@ -31,14 +31,18 @@ fetchTrendingSeries(API_KEY, BASE_SERIES_URL, renderTrendingSeries);
 
 fetchTrendingPeople(API_KEY, BASE_PEOPLE_URL, renderTrendingPeople);
 
-refs.form.addEventListener('submit', e => {
-  e.preventDefault();
-  const query = refs.form.searchQuery.value.trim();
-  searchMovie(API_KEY, SEARCH_MOVIE_URL, query, renderFoundMovies);
-});
+if (refs?.form) {
+  refs.form.addEventListener('submit', e => {
+    e.preventDefault();
+    const query = refs.form.searchQuery.value.trim();
+    searchMovie(API_KEY, SEARCH_MOVIE_URL, query, renderFoundMovies);
+  });
+}
 
-refs2.form.addEventListener('submit', e => {
-  e.preventDefault();
-  const query = refs2.form.searchQuery.value.trim();
-  searchSeries(API_KEY, SEARCH_SERIES_URL, query, renderFoundSeries);
-});
+if (refs2?.form) {
+  refs2.form.addEventListener('submit', e => {
+    e.preventDefault();
+    const query = refs2.form.searchQuery.value.trim();
+    searchSeries(API_KEY, SEARCH_SERIES_URL, query, renderFoundSeries);
+  });
+}
