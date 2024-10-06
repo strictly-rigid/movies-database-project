@@ -5,9 +5,9 @@ const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
 const DEFAULT_IMAGE =
   'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg';
 
-export function renderTrendingPeople(people) {
-  const trendingPeople = people
-    .map(({ name, gender, known_for, profile_path }) => {
+export function renderFoundPerson(foundPerson) {
+  const foundItems = foundPerson
+    .map(({ id, known_for, name, gender, profile_path }) => {
       const titles = known_for.map(item => item.title || item.name).join(', ');
 
       const imageSrc = profile_path
@@ -16,7 +16,7 @@ export function renderTrendingPeople(people) {
 
       const personGender = genders[gender] || 'Not specified';
 
-      return `<li class="person-item">
+      return `<li class="person-item" id=${id}>
             <img
               src="${imageSrc}"
               class="person-image"
@@ -29,5 +29,5 @@ export function renderTrendingPeople(people) {
     })
     .join('');
 
-  refs3.peopleList.insertAdjacentHTML('beforeend', trendingPeople);
+  refs3.peopleList.insertAdjacentHTML('beforeend', foundItems);
 }

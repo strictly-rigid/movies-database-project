@@ -1,4 +1,7 @@
 export const refs3 = {
-  trendingPeopleContainer: document.querySelector('.people-data-container'),
-  trendingPeopleList: document.querySelector('.people-list'),
+  form: document.querySelector('.search-form-people'),
+  peopleContainer: document.querySelector('.people-data-container'),
+  peopleList: document.querySelector('.people-list'),
 };
+
+console.log(refs3.form);

@@ -1,5 +1,6 @@
 import { refs } from './js/refs';
 import { refs2 } from './js/refs2';
+import { refs3 } from './js/refs3';
 import axios from 'axios';
 
 import { fetchTrendingMovies } from './js/TrendingMovies/fetchTrendingMovies.js';
@@ -17,6 +18,9 @@ import { renderFoundSeries } from './js/TrendingSeries/renderFoundSeries.js';
 import { fetchTrendingPeople } from './js/TrendingPeople/fetchTrendingPeople.js';
 import { renderTrendingPeople } from './js/TrendingPeople/renderTrendingPeople.js';
 
+import { searchPerson } from './js/TrendingPeople/searchPerson.js';
+import { renderFoundPerson } from './js/TrendingPeople/renderFoundPerson.js';
+
 const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
 const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week';
 const BASE_SERIES_URL = 'https://api.themoviedb.org/3/trending/tv/week';
@@ -24,6 +28,7 @@ const BASE_PEOPLE_URL = 'https://api.themoviedb.org/3/trending/person/week';
 
 const SEARCH_MOVIE_URL = 'https://api.themoviedb.org/3/search/movie';
 const SEARCH_SERIES_URL = 'https://api.themoviedb.org/3/search/tv';
+const SEARCH_PERSON_URL = 'https://api.themoviedb.org/3/search/person';
 
 fetchTrendingMovies(API_KEY, BASE_URL, renderTrendingMovies);
 
@@ -44,5 +49,13 @@ if (refs2?.form) {
     e.preventDefault();
     const query = refs2.form.searchQuery.value.trim();
     searchSeries(API_KEY, SEARCH_SERIES_URL, query, renderFoundSeries);
+  });
+}
+
+if (refs3?.form) {
+  refs3.form.addEventListener('submit', e => {
+    e.preventDefault();
+    const query = refs3.form.searchQuery.value.trim();
+    searchPerson(API_KEY, SEARCH_PERSON_URL, query, renderFoundPerson);
   });
 }
