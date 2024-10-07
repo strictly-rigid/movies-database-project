@@ -30,24 +30,21 @@
             >
           </li>
         </ul>
+
+        <div class="form-container">
+          <form id="search-form" class="search-form">
+            <input type="text" name="searchQuery" placeholder="search movies" />
+            <button type="submit">Search</button>
+          </form>
+        </div>
       </div>
     </nav>
 
     <main>
-      <div class="form-container">
-        <form id="search-form" class="search-form">
-          <input
-            type="text"
-            name="searchQuery"
-            placeholder="search something..."
-          />
-          <button type="submit">Search</button>
-        </form>
-      </div>
-
       <!-- Data container -->
       <div class="data-container">
         <ul class="movies-list"></ul>
+        <div class="js-guard"></div>
       </div>
     </main>
 

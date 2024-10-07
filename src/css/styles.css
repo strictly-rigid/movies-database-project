@@ -75,6 +75,13 @@ nav {
   width: 100%;
   background: var(--primary-color);
 }
+
+/* .nav-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
 .nav-wrapper {
   /* position: relative; */
   /* max-width: 1300px; */
@@ -84,7 +91,7 @@ nav {
   margin: auto;
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: space-between;
 }
 
 .nav-links {

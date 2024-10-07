@@ -30,7 +30,9 @@ const SEARCH_MOVIE_URL = 'https://api.themoviedb.org/3/search/movie';
 const SEARCH_SERIES_URL = 'https://api.themoviedb.org/3/search/tv';
 const SEARCH_PERSON_URL = 'https://api.themoviedb.org/3/search/person';
 
-fetchTrendingMovies(API_KEY, BASE_URL, renderTrendingMovies);
+let currentPage = 1;
+
+fetchTrendingMovies(API_KEY, BASE_URL, renderTrendingMovies, currentPage);
 
 fetchTrendingSeries(API_KEY, BASE_SERIES_URL, renderTrendingSeries);
 
