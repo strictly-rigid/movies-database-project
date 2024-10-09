@@ -1,1 +1,2 @@
 1. API KEY to set as default params, not in the query
+2. Load pages only when they are active, not right away

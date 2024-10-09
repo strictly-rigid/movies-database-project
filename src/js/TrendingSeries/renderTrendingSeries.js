@@ -1,4 +1,4 @@
-import { refs2 } from '../refs2';
+import { refs2 } from '../refs2.js';
 
 const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
 
@@ -20,5 +20,4 @@ export function renderTrendingSeries(series) {
     .join('');
 
   refs2.seriesList.insertAdjacentHTML('beforeend', trendingSeries);
-  console.log(seriesList);
 }

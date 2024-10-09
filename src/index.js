@@ -32,11 +32,11 @@ const SEARCH_PERSON_URL = 'https://api.themoviedb.org/3/search/person';
 
 let currentPage = 1;
 
-fetchTrendingMovies(API_KEY, BASE_URL, renderTrendingMovies, currentPage);
+// fetchTrendingMovies(API_KEY, BASE_URL, renderTrendingMovies, currentPage);
 
-fetchTrendingSeries(API_KEY, BASE_SERIES_URL, renderTrendingSeries);
+// fetchTrendingSeries(API_KEY, BASE_SERIES_URL, renderTrendingSeries);
 
-fetchTrendingPeople(API_KEY, BASE_PEOPLE_URL, renderTrendingPeople);
+// fetchTrendingPeople(API_KEY, BASE_PEOPLE_URL, renderTrendingPeople);
 
 if (refs?.form) {
   refs.form.addEventListener('submit', e => {

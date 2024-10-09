@@ -106,10 +106,16 @@ nav {
   margin-right: 30px;
 }
 
-.data-container,
+.data-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .series-data-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .movies-list,

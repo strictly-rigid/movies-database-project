@@ -3,5 +3,3 @@ export const refs3 = {
   peopleContainer: document.querySelector('.people-data-container'),
   peopleList: document.querySelector('.people-list'),
 };
-
-console.log(refs3.form);
