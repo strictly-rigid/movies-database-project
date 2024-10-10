@@ -106,17 +106,26 @@ nav {
   margin-right: 30px;
 }
 
-.data-container {
+.data-container,
+.series-data-container,
+.people-data-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 20px;
+}
+
+/* .series-data-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.series-data-container {
+.people-data-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-}
+} */
 
 .movies-list,
 .series-list,
@@ -179,4 +188,14 @@ nav {
   margin-bottom: 10px;
   text-align: justify;
   /* text-indent: 2em; */
+}
+
+/* ====================== SERIES PAGE ======================  */
+.series-info {
+  padding: 20px;
+}
+
+/* ====================== PEOPLE PAGE ======================  */
+.person-info {
+  padding: 20px;
 }

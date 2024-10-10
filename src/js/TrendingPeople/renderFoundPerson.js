@@ -16,7 +16,7 @@ export function renderFoundPerson(foundPerson) {
 
       const personGender = genders[gender] || 'Not specified';
 
-      return `<li class="person-item" id=${id}>
+      return `<li class="person-item" data-id=${id}>
             <img
               src="${imageSrc}"
               class="person-image"

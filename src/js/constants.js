@@ -83,3 +83,5 @@ export const genders = {
   2: 'Male',
   3: 'Non-binary',
 };
+
+export const URLS = { SINGLE_MOVIE_URL: 'https://api.themoviedb.org/3/movie' };

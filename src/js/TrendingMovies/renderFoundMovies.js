@@ -28,7 +28,7 @@ export function renderFoundMovies(foundMovies) {
       }) => {
         const genreNames = getGenres(genre_ids);
 
-        return `<li class="movies-item" id=${id}>
+        return `<li class="movies-item" data-id=${id}>
             <img src="${POSTER_URL}${poster_path}" class="movie-poster" alt="movie poster">
             <div class="movie-info">
             <h2 class="movie-title">${original_title}</h2>

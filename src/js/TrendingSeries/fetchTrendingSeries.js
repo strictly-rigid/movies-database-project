@@ -7,7 +7,7 @@ const BASE_SERIES_URL = 'https://api.themoviedb.org/3/trending/tv/week';
 let currentPage = 1;
 let isLoading = false;
 
-const targetSeries = document.querySelector('.js-guard-series');
+// const targetSeries = document.querySelector('.js-guard-series');
 
 export async function fetchTrendingSeries(key, url, currentPage) {
   try {
@@ -27,7 +27,7 @@ export async function fetchTrendingSeries(key, url, currentPage) {
 
 let options = {
   root: null,
-  rootMargin: '100px',
+  rootMargin: '400px',
   threshold: 1.0,
 };
 

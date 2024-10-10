@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { refs } from '../refs';
 import { renderTrendingMovies } from './renderTrendingMovies';
+import { fetchSingleMovie } from './fetchSingleMovie';
 
 const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
 const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week';
@@ -25,7 +26,7 @@ export async function fetchTrendingMovies(key, url, currentPage) {
 
 let options = {
   root: null,
-  rootMargin: '10px',
+  rootMargin: '400px',
   threshold: 1.0,
 };
 

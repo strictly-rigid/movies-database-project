@@ -28,7 +28,7 @@ export function renderFoundSeries(foundSeries) {
       }) => {
         const genreNames = getGenres(genre_ids);
 
-        return `<li class="movies-item" id=${id}>
+        return `<li class="movies-item" data-id=${id}>
             <img src="${POSTER_URL}${poster_path}" class="movie-poster" alt="movie poster">
             <div class="movie-info">
             <h2 class="movie-title">${name}</h2>
@@ -36,8 +36,10 @@ export function renderFoundSeries(foundSeries) {
               <p class="movie-genres">Genres: ${
                 genreNames || 'Sorry, no genres available'
               }</p>
-                <p class="movie-genres">Premiere date: ${first_air_date}</p>
-            <span class="movie-rate">Rating: ${vote_average.toFixed(2)}</span> 
+                <p class="series-premiere">Premiere date: ${first_air_date}</p>
+                 <span class="movie-rate">Rating: ${vote_average.toFixed(
+                   2
+                 )}</span> 
                  <span class="movie-rate-count">Total votes: ${vote_count}</span> 
           </div>     
           </li>`;
