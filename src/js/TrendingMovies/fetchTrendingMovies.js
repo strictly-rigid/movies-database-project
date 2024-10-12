@@ -31,7 +31,7 @@ let options = {
 };
 
 let observer = new IntersectionObserver(onLoadMore, options);
-function onLoadMore(entries, observer) {
+async function onLoadMore(entries, observer) {
   console.log(entries);
   entries.forEach(entry => {
     if (entry.isIntersecting) {

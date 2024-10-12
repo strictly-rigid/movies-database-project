@@ -46,6 +46,38 @@
         <ul class="movies-list"></ul>
         <div class="js-guard"></div>
       </div>
+
+      <div class="backdrop is-hidden" data-modal>
+        <div class="modal">
+          <div class="modal-content">
+            <button
+              id="modal-close"
+              type="button"
+              class="modal-close-btn"
+              data-modal-close
+            >
+              <!-- <svg class="modal-close-icon">
+          <use href="./images/sprite.svg#icon-cross-btn"></use>
+        </svg> -->
+            </button>
+            <div class="movie-item-wrapper"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="movie-item-detailed">
+        <h2 class="modal-title">${title}</h2>
+        <h3 class="modal-original-title">Original title: ${original_title}</h3>
+        <p class="orig-country">${origin_country}</p>
+        <p class="modal-release-date">${release_date}</p>
+        <p class="modal-movie-description">Desription: ${overview}</p>
+        <p class="modal-genres">Genres: ${genres}</p>
+        <span class="budget">${budget}</span>
+        <span class="revenue">${revenue}</span>
+        <p class="runtime">Time: ${runtime}</p>
+        <span class="rating">Rating: ${vote_average}</span>
+        <span class="vote-count">Total votes: ${vote-count}</span>
+      </div>
     </main>
 
     <script type="module" src="./index.js"></script>
