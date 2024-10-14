@@ -26,7 +26,7 @@ export async function fetchTrendingMovies(key, url, currentPage) {
 
 let options = {
   root: null,
-  rootMargin: '400px',
+  rootMargin: '100px',
   threshold: 1.0,
 };
 

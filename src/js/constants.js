@@ -1,3 +1,8 @@
+export const URLS = {
+  SINGLE_MOVIE_URL: 'https://api.themoviedb.org/3/movie',
+  SINGLE_SERIES_URL: 'https://api.themoviedb.org/3/tv',
+};
+
 export const genres = [
   {
     id: 28,
@@ -83,5 +88,3 @@ export const genders = {
   2: 'Male',
   3: 'Non-binary',
 };
-
-export const URLS = { SINGLE_MOVIE_URL: 'https://api.themoviedb.org/3/movie' };

@@ -150,9 +150,10 @@ nav {
 .movie-poster,
 .series-poster,
 .person-image {
-  width: 100%;
+  width: auto;
   height: 450px;
   border-radius: 5px;
+  margin: 0 auto;
 }
 
 .movie-info {
@@ -215,8 +216,7 @@ nav {
 }
 
 .modal {
-  font-family: 'DM Sans', sans-serif;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -231,5 +231,46 @@ nav {
   border: 2px solid #111;
   scale: 1;
   opacity: 1;
+  z-index: 999;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.series-backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal-series {
+  opacity: 0;
+  transform: scale(0.8);
+  transform-origin: center;
+}
+
+.modal-series {
+  font-family: 'DM Sans', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* width: 335px;
+  height: 762px; */
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 24px;
+  border-radius: 18px;
+  border: 2px solid #111;
+  scale: 1;
+  opacity: 1;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-close-icon {
+  fill: black;
+}
+
+.modal-close-btn {
+  background-color: red;
 }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { refs } from '../refs';
 import { URLS } from '../constants';
+import { createModalMarkup } from '../helpers/createModalMarkup';
 const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
 
 export async function fetchSingleMovie(key, url, id) {
@@ -17,16 +18,16 @@ export async function fetchSingleMovie(key, url, id) {
   }
 }
 
-fetchSingleMovie(API_KEY, URLS.SINGLE_MOVIE_URL, 533535);
+if (refs?.moviesContainer) {
+  refs.moviesContainer.addEventListener('click', onItemClick);
+}
 
-refs.moviesContainer.addEventListener('click', onItemClick);
-
-function onItemClick(e) {
+async function onItemClick(e) {
   e.preventDefault();
-  console.log('hellow from listener');
   const targetElement = e.target.closest('.movies-item');
   if (targetElement) {
     const dataId = targetElement.getAttribute('data-id');
-    fetchSingleMovie(API_KEY, URLS.SINGLE_MOVIE_URL, dataId);
+    const data = await fetchSingleMovie(API_KEY, URLS.SINGLE_MOVIE_URL, dataId);
+    createModalMarkup(data);
   }
 }
