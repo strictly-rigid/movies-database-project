@@ -52,7 +52,9 @@ export async function createModalMarkup(data) {
   //   console.log(refs.closeBtn);
 }
 
-refs.closeBtn.addEventListener('click', onModalClose);
+if (refs?.closeBtn) {
+  refs.closeBtn.addEventListener('click', onModalClose);
+}
 
 function onModalClose() {
   refs.modalWrapper.innerHTML = '';

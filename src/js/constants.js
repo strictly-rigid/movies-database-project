@@ -1,6 +1,7 @@
 export const URLS = {
   SINGLE_MOVIE_URL: 'https://api.themoviedb.org/3/movie',
   SINGLE_SERIES_URL: 'https://api.themoviedb.org/3/tv',
+  SINGLE_PERSON_URL: 'https://api.themoviedb.org/3/person',
 };
 
 export const genres = [

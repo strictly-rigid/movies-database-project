@@ -44,6 +44,24 @@
         <ul class="people-list"></ul>
         <div class="js-guard-people"></div>
       </div>
+
+      <div class="person-backdrop is-hidden" data-modal>
+        <div class="modal-person">
+          <div class="modal-content">
+            <button
+              id="modal-close"
+              type="button"
+              class="modal-close-btn"
+              data-modal-close
+            >
+              <svg class="modal-close-icon" width="20" height="20">
+                <use href="../images/cross-btn.svg"></use>
+              </svg>
+            </button>
+            <div class="person-item-wrapper"></div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <script type="module" src="../index.js"></script>

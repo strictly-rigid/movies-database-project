@@ -26,6 +26,8 @@ import { renderFoundPerson } from './js/TrendingPeople/renderFoundPerson.js';
 import { fetchSingleSeries } from './js/TrendingSeries/fetchSingleSeries.js';
 import { createSeriesModalMarkup } from './js/helpers/createSeriesModalMarkup.js';
 
+import { fetchSinglePerson } from './js/TrendingPeople/fetchSinglePerson.js';
+
 const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
 const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week';
 const BASE_SERIES_URL = 'https://api.themoviedb.org/3/trending/tv/week';
@@ -80,6 +82,25 @@ async function onItemClick(e) {
     const data = await fetchSingleSeries(
       API_KEY,
       URLS.SINGLE_SERIES_URL,
+      dataId
+    );
+    createSeriesModalMarkup(data);
+  }
+}
+
+if (refs3?.peopleContainer) {
+  refs3.peopleContainer.addEventListener('click', onPersonItemClick);
+}
+
+async function onPersonItemClick(e) {
+  e.preventDefault();
+  // console.log('Hellow from callback');
+  const targetElement = e.target.closest('.person-item');
+  if (targetElement) {
+    const dataId = targetElement.getAttribute('data-id');
+    const data = await fetchSinglePerson(
+      API_KEY,
+      URLS.SINGLE_PERSON_URL,
       dataId
     );
     createSeriesModalMarkup(data);
