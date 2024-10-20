@@ -2,3 +2,7 @@
 2. Load pages only when they are active, not right away
 3. Add items to favorites
 4. Genres function move to helpers
+
+Кожна сторінка - свій суб-index.js файл
+Спільну логіку залишаємо в index.js
+refs.js - залишаємо кожен для окремої сторінки, але ДОМ-елементи називаємо однаково для перевикористання 

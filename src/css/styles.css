@@ -87,7 +87,7 @@ nav {
   /* max-width: 1300px; */
   padding: 0px 30px;
   height: 70px;
-  line-height: 70px;
+  /* line-height: 70px; */
   margin: auto;
   display: flex;
   align-items: center;
@@ -104,6 +104,14 @@ nav {
 
 .nav-item:not(:last-child) {
   margin-right: 30px;
+}
+
+.search-btn {
+  color: var(--background-color);
+  padding: 5px;
+  margin-left: 20px;
+  border: 1px solid var(--background-color);
+  border-radius: 5px;
 }
 
 .data-container,
@@ -220,8 +228,8 @@ nav {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* width: 335px;
-  height: 762px; */
+  /* width: 335px; */
+  /* height: 762px; */
   background-color: #fff;
   display: flex;
   justify-content: center;
@@ -235,26 +243,29 @@ nav {
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.series-backdrop.is-hidden {
+.series-backdrop.is-hidden,
+.person-backdrop.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
-.backdrop.is-hidden .modal-series {
+.backdrop.is-hidden .modal-series,
+.backdrop.is-hidden .modal-person {
   opacity: 0;
   transform: scale(0.8);
   transform-origin: center;
 }
 
-.modal-series {
+.modal-series,
+.modal-person {
   font-family: 'DM Sans', sans-serif;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* width: 335px;
-  height: 762px; */
+  width: 335px;
+  height: 762px;
   background-color: var(--background-color);
   display: flex;
   justify-content: center;
@@ -273,4 +284,31 @@ nav {
 
 .modal-close-btn {
   background-color: red;
+}
+
+/* ====================== MODAL MOVIES======================  */
+.modal-title {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.modal-original-title,
+.orig-country,
+.modal-release-date,
+.modal-movie-description,
+.languages,
+.budget,
+.runtime,
+.rating {
+  margin-top: 5px;
+}
+.modal-genres {
+  margin-top: 5px;
+  font-size: 1.2em;
+}
+
+.rating,
+.vote-count {
+  margin-top: 5px;
+  font-weight: 600;
 }

@@ -10,7 +10,7 @@ export async function fetchSinglePerson(key, url, id) {
   try {
     isLoading = true;
     const response = await axios.get(`${url}/${id}?api_key=${key}`);
-    console.log(response);
+    // console.log(response);
     const personDetails = response.data;
     return personDetails;
   } catch (error) {

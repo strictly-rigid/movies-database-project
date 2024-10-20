@@ -29,10 +29,10 @@ export async function createModalMarkup(data) {
         <img src="${POSTER_URL}${poster_path}" class="movie-poster" alt="movie poster">
         <h2 class="modal-title">${title}</h2>
         <h3 class="modal-original-title">Original title: ${original_title}</h3>
+        <p class="modal-genres">Genres: ${genreNames}</p>
         <p class="orig-country">Country of origin: ${origin_country}</p>
         <p class="modal-release-date">Release date: ${release_date}</p>
         <p class="modal-movie-description">Desription: ${overview}</p>
-        <p class="modal-genres">Genres: ${genreNames}</p>
         <p class="languages">Spoken languages: ${languages}</p>
         <span class="budget">Budget: $${(budget / 1000000).toFixed()} mln</span>
         <span class="revenue">Revenue: $${(

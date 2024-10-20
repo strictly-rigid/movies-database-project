@@ -5,4 +5,5 @@ export const refs2 = {
   targetObserverSeries: document.querySelector('.js-guard-series'),
   backdrop: document.querySelector('.series-backdrop'),
   modalWrapper: document.querySelector('.series-item-wrapper'),
+  closeBtn: document.querySelector('.modal-close-btn'),
 };

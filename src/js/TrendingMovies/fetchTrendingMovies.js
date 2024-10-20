@@ -45,7 +45,9 @@ async function onLoadMore(entries, observer) {
 
 if (document.body.id === 'movies-page') {
   fetchTrendingMovies(API_KEY, BASE_URL, currentPage)
-    .then(data => renderTrendingMovies(data))
+    .then(data => {
+      renderTrendingMovies(data);
+    })
     .then(() => observer.observe(refs.targetObserver))
     .catch(err => console.log(err));
 }

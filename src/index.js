@@ -27,6 +27,7 @@ import { fetchSingleSeries } from './js/TrendingSeries/fetchSingleSeries.js';
 import { createSeriesModalMarkup } from './js/helpers/createSeriesModalMarkup.js';
 
 import { fetchSinglePerson } from './js/TrendingPeople/fetchSinglePerson.js';
+import { createPersonModalMarkup } from './js/helpers/createPersonModalMarkup.js';
 
 const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
 const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week';
@@ -37,7 +38,7 @@ const SEARCH_MOVIE_URL = 'https://api.themoviedb.org/3/search/movie';
 const SEARCH_SERIES_URL = 'https://api.themoviedb.org/3/search/tv';
 const SEARCH_PERSON_URL = 'https://api.themoviedb.org/3/search/person';
 
-let currentPage = 1;
+// let currentPage = 1;
 
 // fetchTrendingMovies(API_KEY, BASE_URL, renderTrendingMovies, currentPage);
 
@@ -45,11 +46,19 @@ let currentPage = 1;
 
 // fetchTrendingPeople(API_KEY, BASE_PEOPLE_URL, renderTrendingPeople);
 
+let isSearching = false;
+
 if (refs?.form) {
   refs.form.addEventListener('submit', e => {
     e.preventDefault();
     const query = refs.form.searchQuery.value.trim();
-    searchMovie(API_KEY, SEARCH_MOVIE_URL, query, renderFoundMovies);
+
+    if (query) {
+      isSearching = true;
+      searchMovie(API_KEY, SEARCH_MOVIE_URL, query, renderFoundMovies);
+    } else {
+      isSearching = false;
+    }
   });
 }
 
@@ -94,7 +103,7 @@ if (refs3?.peopleContainer) {
 
 async function onPersonItemClick(e) {
   e.preventDefault();
-  // console.log('Hellow from callback');
+  console.log('Hellow from callback');
   const targetElement = e.target.closest('.person-item');
   if (targetElement) {
     const dataId = targetElement.getAttribute('data-id');
@@ -103,6 +112,6 @@ async function onPersonItemClick(e) {
       URLS.SINGLE_PERSON_URL,
       dataId
     );
-    createSeriesModalMarkup(data);
+    createPersonModalMarkup(data);
   }
 }
