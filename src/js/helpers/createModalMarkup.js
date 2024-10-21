@@ -28,19 +28,21 @@ export async function createModalMarkup(data) {
   let markup = `<div class="movie-item-detailed" id=${id}>
         <img src="${POSTER_URL}${poster_path}" class="movie-poster" alt="movie poster">
         <h2 class="modal-title">${title}</h2>
-        <h3 class="modal-original-title">Original title: ${original_title}</h3>
-        <p class="modal-genres">Genres: ${genreNames}</p>
-        <p class="orig-country">Country of origin: ${origin_country}</p>
-        <p class="modal-release-date">Release date: ${release_date}</p>
-        <p class="modal-movie-description">Desription: ${overview}</p>
-        <p class="languages">Spoken languages: ${languages}</p>
-        <span class="budget">Budget: $${(budget / 1000000).toFixed()} mln</span>
-        <span class="revenue">Revenue: $${(
+        <h3 class="modal-original-title"><span class="modal-bold">Original title</span>: ${original_title}</h3>
+        <p class="modal-genres"><span class="modal-bold">Genres:</span> ${genreNames}</p>
+        <p class="orig-country"><span class="modal-bold">Country of origin:</span> ${origin_country}</p>
+        <p class="modal-release-date"><span class="modal-bold">Release date:</span> ${release_date}</p>
+        <p class="modal-movie-description"><span class="modal-bold">Desription:</span> ${overview}</p>
+        <p class="languages"><span class="modal-bold">Spoken languages:</span> ${languages}</p>
+        <span class="budget"><span class="modal-bold">Budget:</span> $${(
+          budget / 1000000
+        ).toFixed()} mln</span>
+        <span class="revenue"><span class="modal-bold">Revenue:</span> $${(
           revenue / 1000000
         ).toFixed()} mln</span>
-        <p class="runtime">Time: ${runtime} minutes</p>
-        <span class="rating">Rating: ${vote_average}</span>
-        <span class="vote-count">Total votes: ${vote_count}</span>
+        <p class="runtime"><span class="modal-bold">Time:</span> ${runtime} minutes</p>
+        <span class="rating"><span class="modal-bold">Rating:</span> ${vote_average}</span>
+        <span class="vote-count"><span class="modal-bold">Total votes:</span> ${vote_count}</span>
       </div>`;
 
   refs.backdrop.classList.remove('is-hidden');
@@ -48,8 +50,7 @@ export async function createModalMarkup(data) {
 
   //   refs.closeBtn = document.querySelector('.modal-close-btn');
   //   refs.closeBtn.addEventListener('click', onModalClose);
-  //   window.addEventListener('keydown', onEscKeyPress);
-  //   console.log(refs.closeBtn);
+  window.addEventListener('keydown', onEscKeyPress);
 }
 
 if (refs?.closeBtn) {
@@ -64,5 +65,17 @@ function onModalClose() {
 
   // refs.backdrop.removeEventListener('click', onModalClose);
   // refs.closeBtn.removeEventListener('click', onModalClose);
-  // window.removeEventListener('keydown', onEscKeyPress);
+  window.removeEventListener('keydown', onEscKeyPress);
+}
+
+function onEscKeyPress(event) {
+  if (event.code === 'Escape') {
+    onModalClose();
+  }
+}
+
+function onBackdropClick(event) {
+  if (event.currentTarget === event.target) {
+    onModalClose();
+  }
 }

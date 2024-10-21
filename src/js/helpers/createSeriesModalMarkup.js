@@ -27,17 +27,28 @@ export async function createSeriesModalMarkup(data) {
   let markup = `<div class="series-item-detailed" id=${id}>
        <img src="${POSTER_URL}${poster_path}" class="movie-poster" alt="movie poster">
         <h2 class="modal-title">${name}</h2>
-        <span class="in-production">Still in production: ${in_production}</span>
-        <span class="orig-country">Origin country:${origin_country}</span>
-        <p class="fitst-air-date">First air date${first_air_date}</p>
-        <p class="modal-series-description">Desription: ${overview}</p>
-        <p class="modal-genres">Genres: ${genreNames}</p>
-        <p class="created-by">Creators: ${creators}</p>
-        <p class="languages">Spoken languages: ${languagesSpoken}</p>
-        <span class="seasons">Number of seasons: ${number_of_seasons}</span>
-        <span class="episodes">Number of episodes: ${number_of_episodes}</span>
-        <span class="rating">Rating: ${vote_average}</span>
-        <span class="vote-count">Total votes: ${vote_count}</span>
+        <p class="modal-genres"><span class="modal-bold">Genres:</span> ${genreNames}</p>
+       
+        <p class="orig-country"><span class="modal-bold">Origin country:</span> ${origin_country}</p>
+        <p class="in-production"><span class="modal-bold">Still in production:</span> ${in_production}</p>
+      
+
+     
+        <p class="first-air-date"><span class="modal-bold">First air date:</span> ${first_air_date}</p>
+        <p class="modal-series-description"><span class="modal-bold">Desription:</span> ${overview}</p>
+      
+        <p class="created-by"><span class="modal-bold">Creators:</span> ${creators}</p>
+        <p class="languages"><span class="modal-bold">Spoken languages:</span> ${languagesSpoken}</p>
+        <div class="series-length">
+        <span class="seasons"><span class="modal-bold">Number of seasons:</span> ${number_of_seasons}</span>
+        <span class="episodes"><span class="modal-bold">Number of episodes:</span> ${number_of_episodes}</span>
+        </div>
+
+        <div class="series-modal-rate">
+         <span class="rating"><span class="modal-bold">Rating:</span> ${vote_average}</span>
+         <span class="vote-count"><span class="modal-bold">Total votes:</span> ${vote_count}</span>
+         </div>
+   
       </div>`;
 
   refs2.backdrop.classList.remove('is-hidden');

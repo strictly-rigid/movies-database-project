@@ -8,8 +8,8 @@ const DEFAULT_IMAGE =
 export function renderTrendingPeople(people) {
   console.log(people);
   const trendingPeople = people
-    .map(({ id, name, gender, known_for, profile_path }) => {
-      const titles = known_for.map(item => item.title || item.name).join(', ');
+    .map(({ id, name, gender, known_for_department, profile_path }) => {
+      // const titles = known_for.map(item => item.title || item.name).join(', ');
 
       const imageSrc = profile_path
         ? `${POSTER_URL}${profile_path}`
@@ -26,7 +26,7 @@ export function renderTrendingPeople(people) {
           <div class="person-info">
             <h2 class="person-name">${name}</h2>
             <p class="person-gender">${personGender}</p>
-            <p class="popular-movies">Popular movies/series: ${titles}</p>
+            <p class="popular-movies">Known for: ${known_for_department}</p>
           </div>
           </li>`;
     })

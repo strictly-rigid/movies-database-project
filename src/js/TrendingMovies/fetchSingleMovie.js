@@ -19,15 +19,40 @@ export async function fetchSingleMovie(key, url, id) {
 }
 
 if (refs?.moviesContainer) {
-  refs.moviesContainer.addEventListener('click', onItemClick);
+  refs.moviesContainer.addEventListener('click', onModalOpen);
 }
 
-async function onItemClick(e) {
+async function onModalOpen(e) {
   e.preventDefault();
   const targetElement = e.target.closest('.movies-item');
   if (targetElement) {
     const dataId = targetElement.getAttribute('data-id');
     const data = await fetchSingleMovie(API_KEY, URLS.SINGLE_MOVIE_URL, dataId);
     createModalMarkup(data);
+    // window.addEventListener('keydown', onEscKeyPress);
+    refs.backdrop.addEventListener('click', onBackdropClick);
   }
+}
+
+// function onEscKeyPress(event) {
+//   if (event.code === 'Escape') {
+//     onModalClose();
+//   }
+// }
+
+function onBackdropClick(event) {
+  if (event.currentTarget === event.target) {
+    onModalClose();
+  }
+}
+
+function onModalClose() {
+  refs.modalWrapper.innerHTML = '';
+
+  refs.backdrop.classList.toggle('is-hidden');
+  // document.body.classList.remove('modal-open');
+
+  // refs.backdrop.removeEventListener('click', onModalClose);
+  // refs.closeBtn.removeEventListener('click', onModalClose);
+  window.removeEventListener('keydown', onEscKeyPress);
 }
