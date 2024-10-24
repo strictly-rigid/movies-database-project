@@ -6,9 +6,12 @@ const DEFAULT_IMAGE =
   'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg';
 
 export function renderFoundPerson(foundPerson) {
+  console.log(foundPerson);
   const foundItems = foundPerson
-    .map(({ id, known_for, name, gender, profile_path }) => {
-      const titles = known_for.map(item => item.title || item.name).join(', ');
+    .map(({ id, known_for_department, name, gender, profile_path }) => {
+      // const titles = known_for_department
+      //   .map(item => item.title || item.name)
+      //   .join(', ');
 
       const imageSrc = profile_path
         ? `${POSTER_URL}${profile_path}`
@@ -24,7 +27,7 @@ export function renderFoundPerson(foundPerson) {
             />
             <h2 class="person-name">${name}</h2>
             <p class="person-gender">${personGender}</p>
-            <p class="popular-movies">Popular movies/series: ${titles}</p>
+          
           </li>`;
     })
     .join('');

@@ -1,6 +1,10 @@
 export const URLS = {
+  BASE_SERIES_URL: 'https://api.themoviedb.org/3/trending/tv/week',
+  BASE_PEOPLE_URL: 'https://api.themoviedb.org/3/trending/person/week',
+  SEARCH_SERIES_URL: 'https://api.themoviedb.org/3/search/tv',
   SINGLE_MOVIE_URL: 'https://api.themoviedb.org/3/movie',
   SINGLE_SERIES_URL: 'https://api.themoviedb.org/3/tv',
+  SEARCH_PERSON_URL: 'https://api.themoviedb.org/3/search/person',
   SINGLE_PERSON_URL: 'https://api.themoviedb.org/3/person',
 };
 

@@ -259,12 +259,22 @@ nav {
   transform-origin: center;
 }
 
-.modal-close-icon {
+/* .modal-close-icon {
   fill: black;
+  z-index: 999;
+  position: fixed;
+  background-color: red;
 }
 
-.modal-close-btn {
+.icon-burger {
+  z-index: 999;
+  position: fixed;
   background-color: red;
+} */
+
+.modal-close-btn {
+  /* background-color: red; */
+  fill: black;
 }
 
 /* ====================== MODAL MOVIES======================  */
