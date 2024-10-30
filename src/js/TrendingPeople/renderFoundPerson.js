@@ -6,7 +6,7 @@ const DEFAULT_IMAGE =
   'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg';
 
 export function renderFoundPerson(foundPerson) {
-  console.log(foundPerson);
+  // console.log(foundPerson);
   const foundItems = foundPerson
     .map(({ id, known_for_department, name, gender, profile_path }) => {
       // const titles = known_for_department

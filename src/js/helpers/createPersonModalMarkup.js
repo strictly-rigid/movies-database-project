@@ -11,13 +11,13 @@ export async function createPersonModalMarkup(data) {
     gender,
     name,
     known_for_department,
-    poster_path,
+    profile_path,
     popularity,
   } = data;
   console.log(data);
 
   let markup = `<div class="person-item-detailed" id=${id}>
-           <img src="${POSTER_URL}${poster_path}" class="movie-poster" alt="movie poster">
+           <img src="${POSTER_URL}${profile_path}" class="person-img" alt="person image">
             <h2 class="modal-name">${name}</h2>
             <span class="gender">Gender: ${gender}</span>
             <span class="birthday">Born: ${birthday}</span>

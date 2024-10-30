@@ -8,8 +8,8 @@ export async function searchPerson(key, url, searchQuery, page) {
     );
 
     console.log(response);
-    const dataFoundPerson = response.data.results;
-    return dataFoundPerson;
+
+    return response;
   } catch (error) {
     console.log('Error fetching person:', error.message);
   }

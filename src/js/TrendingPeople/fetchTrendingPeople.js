@@ -6,6 +6,7 @@ import { renderFoundPerson } from './renderFoundPerson';
 import { searchPerson } from './searchPerson';
 import { fetchSinglePerson } from './fetchSinglePerson';
 import { createPersonModalMarkup } from '../helpers/createPersonModalMarkup';
+import { notifyEndResults, notifyNoResults } from '../helpers/notifyWarnings';
 
 const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
 let query = '';
@@ -65,11 +66,15 @@ async function searchByName(e) {
   e.preventDefault();
 
   trendingObserver.unobserve(refs3.targetObserverPeople);
+  searchObserver.unobserve(refs3.targetObserverSearch);
+
   refs3.backdrop.classList.add('is-hidden');
   query = refs3.form.searchQuery.value.trim();
+  currentSearchPage = 1;
 
   try {
     refs3.peopleList.innerHTML = '';
+    refs3.endResultsInfo.classList.add('visually-hidden');
 
     const personData = await searchPerson(
       API_KEY,
@@ -78,13 +83,27 @@ async function searchByName(e) {
       currentSearchPage
     );
 
-    if (personData && personData.length > 0) {
-      renderFoundPerson(personData);
+    const { results, total_results } = personData.data;
+
+    if (results && results.length > 0) {
+      renderFoundPerson(results);
+      searchObserver.observe(refs3.targetObserverSearch);
+    } else {
+      refs3.endResultsInfo.classList.remove('visually-hidden');
+      notifyNoResults();
+    }
+
+    if (
+      total_results &&
+      total_results <= 20 &&
+      personData.data.total_pages === currentSearchPage
+    ) {
+      notifyEndResults();
+      searchObserver.unobserve(refs3.targetObserverSearch);
     }
   } catch (error) {
     console.log('Error fetching person:', error.message);
   } finally {
-    searchObserver.observe(refs3.targetObserverSearch);
     refs3.form.searchQuery.value = '';
   }
 }
@@ -109,7 +128,10 @@ function onLoadMoreSearch(entries) {
         URLS.SEARCH_PERSON_URL,
         query,
         currentSearchPage
-      ).then(dataFound => renderFoundPerson(dataFound));
+      ).then(dataFound => {
+        const { results } = dataFound.data;
+        renderFoundPerson(results);
+      });
     }
   });
 }

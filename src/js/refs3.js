@@ -6,4 +6,5 @@ export const refs3 = {
   targetObserverSearch: document.querySelector('.js-guard-search'),
   backdrop: document.querySelector('.person-backdrop'),
   modalWrapper: document.querySelector('.person-item-wrapper'),
+  endResultsInfo: document.querySelector('.no-results-info-people'),
 };
