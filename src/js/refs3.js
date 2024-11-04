@@ -7,4 +7,5 @@ export const refs3 = {
   backdrop: document.querySelector('.person-backdrop'),
   modalWrapper: document.querySelector('.person-item-wrapper'),
   endResultsInfo: document.querySelector('.no-results-info-people'),
+  closeBtn: document.querySelector('.modal-people-close-icon'),
 };

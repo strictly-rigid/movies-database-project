@@ -158,7 +158,8 @@ nav {
 .movie-poster,
 .series-poster,
 .person-image {
-  width: auto;
+  /* width: auto; */
+  max-width: 100%;
   height: 450px;
   border-radius: 5px;
   margin: 0 auto;
@@ -214,13 +215,30 @@ nav {
 .backdrop.is-hidden {
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .backdrop.is-hidden .modal {
   opacity: 0;
   transform: scale(0.8);
   transform-origin: center;
+}
+
+/* Updated Backdrop */
+.person-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* Slightly transparent dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto; /* Allow clicking on the backdrop */
+  transition: opacity 250ms ease, visibility 250ms ease;
 }
 
 .modal,
@@ -230,13 +248,15 @@ nav {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  max-height: 80vh;
   /* width: 335px; */
-  /* height: 762px; */
+  /* max-height: 762px; */
   background-color: var(--background-color);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 24px;
+  padding-top: 60px;
   border-radius: 18px;
   border: 2px solid #111;
   scale: 1;
@@ -244,6 +264,20 @@ nav {
   z-index: 999;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.biography {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* .modal-content::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+} */
 
 .series-backdrop.is-hidden,
 .person-backdrop.is-hidden {
@@ -273,8 +307,11 @@ nav {
 } */
 
 .modal-close-btn {
-  /* background-color: red; */
-  fill: black;
+  /* fill: black; */
+  margin-bottom: 5px;
+  position: absolute;
+  right: 30px;
+  top: 30px;
 }
 
 /* ====================== MODAL MOVIES======================  */
@@ -296,7 +333,14 @@ nav {
 .modal-series-description,
 .created-by,
 .series-length,
-.series-modal-rate {
+.series-modal-rate,
+.modal-name,
+.gender,
+.birthday,
+.place_of_birth,
+.known_for,
+.biography,
+.popularity {
   margin-top: 5px;
 }
 .modal-genres {

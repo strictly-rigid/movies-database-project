@@ -23,6 +23,11 @@ async function fetchTrendingPeople(key, url, currentPage) {
       `${url}?api_key=${key}&page=${currentPage}`
     );
     console.log(response);
+
+    if (response.data.total_pages === currentSearchPage) {
+      notifyEndResults();
+      trendingObserver.unobserve(refs3.targetObserverPeople);
+    }
     const dataPeople = response.data.results;
     return dataPeople;
   } catch (error) {
@@ -142,7 +147,7 @@ refs3.peopleContainer.addEventListener('click', onPersonItemClick);
 
 async function onPersonItemClick(e) {
   e.preventDefault();
-  console.log('Hellow from callback');
+  // console.log('Hellow from callback');
   const targetElement = e.target.closest('.person-item');
   if (targetElement) {
     const dataId = targetElement.getAttribute('data-id');

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { refs3 } from '../refs3.js';
 
 export async function searchPerson(key, url, searchQuery, page) {
   try {
