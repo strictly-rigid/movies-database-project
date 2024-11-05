@@ -147,7 +147,7 @@ refs3.peopleContainer.addEventListener('click', onPersonItemClick);
 
 async function onPersonItemClick(e) {
   e.preventDefault();
-  // console.log('Hellow from callback');
+
   const targetElement = e.target.closest('.person-item');
   if (targetElement) {
     const dataId = targetElement.getAttribute('data-id');

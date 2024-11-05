@@ -43,21 +43,25 @@
       <div class="series-data-container">
         <ul class="series-list"></ul>
         <div class="js-guard-series"></div>
+        <div class="js-guard-search"></div>
+        <div class="no-results-info-series visually-hidden">
+          Sorry, no matching results
+        </div>
       </div>
 
       <div class="series-backdrop is-hidden" data-modal>
         <div class="modal-series">
+          <button
+            id="modal-close"
+            type="button"
+            class="modal-close-btn"
+            data-modal-close
+          >
+            <svg class="modal-close-icon" width="20" height="20">
+              <use href="../images/icons.svg#icon-close-modal"></use>
+            </svg>
+          </button>
           <div class="modal-content">
-            <button
-              id="modal-close"
-              type="button"
-              class="modal-close-btn"
-              data-modal-close
-            >
-              <svg class="modal-close-icon" width="20" height="20">
-                <use href="../images/cross-btn.svg"></use>
-              </svg>
-            </button>
             <div class="series-item-wrapper"></div>
           </div>
         </div>

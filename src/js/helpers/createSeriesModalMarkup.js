@@ -54,8 +54,30 @@ export async function createSeriesModalMarkup(data) {
   refs2.backdrop.classList.remove('is-hidden');
   refs2.modalWrapper.innerHTML = markup;
 
-  //   refs.closeBtn = document.querySelector('.modal-close-btn');
-  //   refs.closeBtn.addEventListener('click', onModalClose);
-  //   window.addEventListener('keydown', onEscKeyPress);
-  //   console.log(refs.closeBtn);
+  refs2.backdrop.addEventListener('click', onBackdropClick);
+  window.addEventListener('keydown', onEscKeyPress);
+  refs2.closeBtn.addEventListener('click', onModalClose);
+}
+
+function onModalClose() {
+  refs2.modalWrapper.innerHTML = '';
+
+  refs2.backdrop.classList.add('is-hidden');
+  // document.body.classList.remove('modal-open');
+
+  refs2.backdrop.removeEventListener('click', onModalClose);
+  refs2.closeBtn.removeEventListener('click', onModalClose);
+  window.removeEventListener('keydown', onEscKeyPress);
+}
+
+function onEscKeyPress(event) {
+  if (event.code === 'Escape') {
+    onModalClose();
+  }
+}
+
+function onBackdropClick(event) {
+  if (event.currentTarget === event.target) {
+    onModalClose();
+  }
 }
