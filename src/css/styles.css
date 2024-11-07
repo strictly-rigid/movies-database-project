@@ -225,19 +225,20 @@ nav {
 }
 
 /* Updated Backdrop */
-.person-backdrop {
+.person-backdrop,
+.series-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6); /* Slightly transparent dark overlay */
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 1;
   visibility: visible;
-  pointer-events: auto; /* Allow clicking on the backdrop */
+  pointer-events: auto;
   transition: opacity 250ms ease, visibility 250ms ease;
 }
 
