@@ -44,22 +44,26 @@
       <!-- Data container -->
       <div class="data-container">
         <ul class="movies-list"></ul>
-        <div class="js-guard"></div>
+        <div class="js-guard-movies"></div>
+        <div class="js-guard-search"></div>
+        <div class="no-results-info-movies visually-hidden">
+          Sorry, no matching results
+        </div>
       </div>
 
-      <div class="backdrop is-hidden" data-modal>
-        <div class="modal">
+      <div class="movies-backdrop is-hidden" data-modal>
+        <div class="modal-movies">
+          <button
+            id="modal-close"
+            type="button"
+            class="modal-close-btn"
+            data-modal-close
+          >
+            <svg class="modal-close-icon" width="30" height="30">
+              <use href="./images/icons.svg#icon-close-modal"></use>
+            </svg>
+          </button>
           <div class="modal-content">
-            <button
-              id="modal-close"
-              type="button"
-              class="modal-close-btn"
-              data-modal-close
-            >
-              <svg class="modal-close-icon" width="30" height="30">
-                <use href="./images/icons.svg#burger-icon"></use>
-              </svg>
-            </button>
             <div class="movie-item-wrapper"></div>
           </div>
         </div>

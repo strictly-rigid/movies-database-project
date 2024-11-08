@@ -1,9 +1,4 @@
 import axios from 'axios';
-import { refs2 } from '../refs2';
-import { URLS } from '../constants';
-import { createSeriesModalMarkup } from '../helpers/createSeriesModalMarkup';
-const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
-
 let isLoading = false;
 
 export async function fetchSingleSeries(key, url, id) {
@@ -19,22 +14,3 @@ export async function fetchSingleSeries(key, url, id) {
     isLoading = false;
   }
 }
-
-// if (refs2?.seriesContainer) {
-//   refs2.seriesContainer.addEventListener('click', onItemClick);
-// }
-
-// async function onItemClick(e) {
-//   e.preventDefault();
-//   console.log('Hellow from callback');
-//   const targetElement = e.target.closest('.series-item');
-//   if (targetElement) {
-//     const dataId = targetElement.getAttribute('data-id');
-//     const data = await fetchSingleSeries(
-//       API_KEY,
-//       URLS.SINGLE_SERIES_URL,
-//       dataId
-//     );
-//     createSeriesModalMarkup(data);
-//   }
-// }

@@ -18,7 +18,7 @@ let isLoading = false;
 
 /* ====================== TRENDING ======================  */
 
-export async function fetchTrendingSeries(key, url, currentPage) {
+async function fetchTrendingSeries(key, url, currentPage) {
   try {
     isLoading = true;
     const response = await axios.get(
@@ -109,7 +109,7 @@ async function searchByName(e) {
       searchObserver.unobserve(refs2.targetObserverSearch);
     }
   } catch (error) {
-    console.log('Error fetching person:', error.message);
+    console.log('Error fetching series:', error.message);
   } finally {
     refs2.form.searchQuery.value = '';
   }

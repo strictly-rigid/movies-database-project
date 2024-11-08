@@ -1,18 +1,12 @@
 import axios from 'axios';
-import { refs } from '../refs.js';
 
-export async function searchMovie(key, url, searchQuery, renderFoundItems) {
+export async function searchMovie(key, url, searchQuery, page) {
   try {
     const response = await axios.get(
-      `${url}?api_key=${key}&query=${searchQuery}`
+      `${url}?api_key=${key}&query=${searchQuery}&page=${page}`
     );
-    console.log(response);
-    const queryFoundMovies = response.data.results;
-    if (queryFoundMovies) {
-      refs.moviesList.innerHTML = '';
-    }
-
-    renderFoundItems(queryFoundMovies);
+    // console.log(response);
+    return response;
   } catch (error) {
     console.log('Error fetching trending movies:', error.message);
   }

@@ -48,23 +48,19 @@ export async function createModalMarkup(data) {
   refs.backdrop.classList.remove('is-hidden');
   refs.modalWrapper.innerHTML = markup;
 
-  //   refs.closeBtn = document.querySelector('.modal-close-btn');
-  //   refs.closeBtn.addEventListener('click', onModalClose);
+  refs.backdrop.addEventListener('click', onBackdropClick);
   window.addEventListener('keydown', onEscKeyPress);
-}
-
-if (refs?.closeBtn) {
   refs.closeBtn.addEventListener('click', onModalClose);
 }
 
 function onModalClose() {
   refs.modalWrapper.innerHTML = '';
 
-  refs.backdrop.classList.toggle('is-hidden');
+  refs.backdrop.classList.add('is-hidden');
   // document.body.classList.remove('modal-open');
 
-  // refs.backdrop.removeEventListener('click', onModalClose);
-  // refs.closeBtn.removeEventListener('click', onModalClose);
+  refs.backdrop.removeEventListener('click', onModalClose);
+  refs.closeBtn.removeEventListener('click', onModalClose);
   window.removeEventListener('keydown', onEscKeyPress);
 }
 

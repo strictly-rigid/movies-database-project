@@ -1,63 +1,209 @@
 import { refs } from './js/refs';
-import { refs2 } from './js/refs2';
-import { refs3 } from './js/refs3';
 import axios from 'axios';
-
 import { URLS } from './js/constants.js';
 
-import { fetchTrendingMovies } from './js/TrendingMovies/fetchTrendingMovies.js';
 import { renderTrendingMovies } from './js/TrendingMovies/renderTrendingMovies.js';
-
-import { searchMovie } from './js/TrendingMovies/searchMovie.js';
 import { renderFoundMovies } from './js/TrendingMovies/renderFoundMovies.js';
 
-import { fetchTrendingSeries } from './js/TrendingSeries/fetchTrendingSeries.js';
-import { renderTrendingSeries } from './js/TrendingSeries/renderTrendingSeries.js';
-
-import { searchSeries } from './js/TrendingSeries/searchSeries.js';
-import { renderFoundSeries } from './js/TrendingSeries/renderFoundSeries.js';
-
-import { fetchTrendingPeople } from './js/TrendingPeople/fetchTrendingPeople.js';
-import { renderTrendingPeople } from './js/TrendingPeople/renderTrendingPeople.js';
-
-import { searchPerson } from './js/TrendingPeople/searchPerson.js';
-import { renderFoundPerson } from './js/TrendingPeople/renderFoundPerson.js';
-
-import { fetchSingleSeries } from './js/TrendingSeries/fetchSingleSeries.js';
-import { createSeriesModalMarkup } from './js/helpers/createSeriesModalMarkup.js';
-
-import { fetchSinglePerson } from './js/TrendingPeople/fetchSinglePerson.js';
-import { createPersonModalMarkup } from './js/helpers/createPersonModalMarkup.js';
+import { searchMovie } from './js/TrendingMovies/searchMovie.js';
+import { fetchSingleMovie } from './js/TrendingMovies/fetchSingleMovie.js';
+import { createModalMarkup } from './js/helpers/createModalMarkup.js';
+import {
+  notifyEndResults,
+  notifyNoResults,
+} from './js/helpers/notifyWarnings.js';
 
 const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
 const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week';
-const BASE_SERIES_URL = 'https://api.themoviedb.org/3/trending/tv/week';
-const BASE_PEOPLE_URL = 'https://api.themoviedb.org/3/trending/person/week';
 
-const SEARCH_MOVIE_URL = 'https://api.themoviedb.org/3/search/movie';
-const SEARCH_SERIES_URL = 'https://api.themoviedb.org/3/search/tv';
-const SEARCH_PERSON_URL = 'https://api.themoviedb.org/3/search/person';
-
-// let currentPage = 1;
-
-// fetchTrendingMovies(API_KEY, BASE_URL, renderTrendingMovies, currentPage);
-
-// fetchTrendingSeries(API_KEY, BASE_SERIES_URL, renderTrendingSeries);
-
-// fetchTrendingPeople(API_KEY, BASE_PEOPLE_URL, renderTrendingPeople);
-
+let query = '';
+let currentPage = 1;
+let currentSearchPage = 1;
 let isSearching = false;
 
-if (refs?.form) {
-  refs.form.addEventListener('submit', e => {
-    e.preventDefault();
-    const query = refs.form.searchQuery.value.trim();
+/* ====================== TRENDING ======================  */
 
-    if (query) {
-      isSearching = true;
-      searchMovie(API_KEY, SEARCH_MOVIE_URL, query, renderFoundMovies);
-    } else {
-      isSearching = false;
+async function fetchTrendingMovies(key, url, currentPage) {
+  try {
+    isLoading = true;
+    const response = await axios.get(
+      `${url}?api_key=${key}&page=${currentPage}`
+    );
+
+    if (response.data.total_pages === currentSearchPage) {
+      notifyEndResults();
+      trendingObserver.unobserve(refs.targetObserverMovies);
+    }
+    const dataMovies = response.data.results;
+    return dataMovies;
+  } catch (error) {
+    console.log('Error fetching trending movies:', error.message);
+  } finally {
+    isLoading = false;
+  }
+}
+
+const trendingObserverOptions = {
+  root: null,
+  rootMargin: '400px',
+  threshold: 1.0,
+};
+
+let trendingObserver = new IntersectionObserver(
+  onLoadMoreTrending,
+  trendingObserverOptions
+);
+function onLoadMoreTrending(entries, observer) {
+  console.log(entries);
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      currentPage += 1;
+      fetchTrendingMovies(API_KEY, URLS.BASE_MOVIES_URL, currentPage).then(
+        data => renderTrendingMovies(data)
+      );
     }
   });
 }
+
+fetchTrendingMovies(API_KEY, URLS.BASE_MOVIES_URL, currentPage)
+  .then(data => renderTrendingMovies(data))
+  .then(() => trendingObserver.observe(refs.targetObserverMovies))
+  .catch(err => console.log(err));
+
+/* ====================== SEARCH ======================  */
+refs.form.addEventListener('submit', searchByName);
+
+async function searchByName(e) {
+  e.preventDefault();
+
+  trendingObserver.unobserve(refs.targetObserverMovies);
+  searchObserver.unobserve(refs.targetObserverSearch);
+
+  refs.backdrop.classList.add('is-hidden');
+  query = refs.form.searchQuery.value.trim();
+  currentSearchPage = 1;
+
+  try {
+    refs.moviesList.innerHTML = '';
+    refs.endResultsInfo.classList.add('visually-hidden');
+
+    const moviesData = await searchMovie(
+      API_KEY,
+      URLS.SEARCH_MOVIE_URL,
+      query,
+      currentSearchPage
+    );
+
+    const { results, total_results } = moviesData.data;
+
+    if (results && results.length > 0) {
+      renderFoundMovies(results);
+      searchObserver.observe(refs.targetObserverSearch);
+    } else {
+      refs.endResultsInfo.classList.remove('visually-hidden');
+      notifyNoResults();
+    }
+
+    if (
+      total_results &&
+      total_results <= 20 &&
+      moviesData.data.total_pages === currentSearchPage
+    ) {
+      notifyEndResults();
+      searchObserver.unobserve(refs.targetObserverSearch);
+    }
+  } catch (error) {
+    console.log('Error fetching movies:', error.message);
+  } finally {
+    refs.form.searchQuery.value = '';
+  }
+}
+
+const searchObserverOptions = {
+  root: null,
+  rootMargin: '400px',
+  threshold: 1.0,
+};
+
+let searchObserver = new IntersectionObserver(
+  onLoadMoreSearch,
+  searchObserverOptions
+);
+
+function onLoadMoreSearch(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      currentSearchPage += 1;
+      searchMovie(
+        API_KEY,
+        URLS.SEARCH_MOVIE_URL,
+        query,
+        currentSearchPage
+      ).then(dataFound => {
+        const { results } = dataFound.data;
+        renderFoundMovies(results);
+      });
+    }
+  });
+}
+
+/* ======================  MOVIE'S DETAILS ======================  */
+
+refs.moviesContainer.addEventListener('click', onMoviesItemClick);
+
+async function onMoviesItemClick(e) {
+  e.preventDefault();
+
+  const targetElement = e.target.closest('.movies-item');
+  if (targetElement) {
+    const dataId = targetElement.getAttribute('data-id');
+    const data = await fetchSingleMovie(API_KEY, URLS.SINGLE_MOVIE_URL, dataId);
+    createModalMarkup(data);
+  }
+}
+
+// if (refs?.form) {
+//   refs.form.addEventListener('submit', e => {
+//     e.preventDefault();
+//     const query = refs.form.searchQuery.value.trim();
+
+//     if (query) {
+//       isSearching = true;
+//       searchMovie(API_KEY, SEARCH_MOVIE_URL, query, renderFoundMovies);
+//     } else {
+//       isSearching = false;
+//     }
+//   });
+// }
+
+// import { refs } from './js/refs';
+// import axios from 'axios';
+
+// import { URLS } from './js/constants.js';
+
+// import { fetchTrendingMovies } from './js/TrendingMovies/fetchTrendingMovies.js';
+// import { renderTrendingMovies } from './js/TrendingMovies/renderTrendingMovies.js';
+
+// import { searchMovie } from './js/TrendingMovies/searchMovie.js';
+// import { renderFoundMovies } from './js/TrendingMovies/renderFoundMovies.js';
+
+// const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
+// const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week';
+
+// const SEARCH_MOVIE_URL = 'https://api.themoviedb.org/3/search/movie';
+
+// let isSearching = false;
+
+// if (refs?.form) {
+//   refs.form.addEventListener('submit', e => {
+//     e.preventDefault();
+//     const query = refs.form.searchQuery.value.trim();
+
+//     if (query) {
+//       isSearching = true;
+//       searchMovie(API_KEY, SEARCH_MOVIE_URL, query, renderFoundMovies);
+//     } else {
+//       isSearching = false;
+//     }
+//   });
+// }
