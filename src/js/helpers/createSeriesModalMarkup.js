@@ -25,7 +25,7 @@ export async function createSeriesModalMarkup(data) {
   const creators = created_by.map(creator => creator.name).join(', ');
 
   let markup = `<div class="series-item-detailed" id=${id}>
-       <img src="${POSTER_URL}${poster_path}" class="movie-poster" alt="movie poster">
+       <img src="${POSTER_URL}${poster_path}" class="series-poster" alt="series poster">
         <h2 class="modal-title">${name}</h2>
         <p class="modal-genres"><span class="modal-bold">Genres:</span> ${genreNames}</p>
        

@@ -26,7 +26,9 @@ export function renderTrendingPeople(people) {
           <div class="person-info">
             <h2 class="person-name">${name}</h2>
             <p class="person-gender">${personGender}</p>
-            <p class="popular-movies">Known for: ${known_for_department}</p>
+            <p class="popular-movies">Known for: ${
+              known_for_department || 'No data'
+            } </p>
           </div>
           </li>`;
     })

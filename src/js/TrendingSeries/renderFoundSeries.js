@@ -29,7 +29,7 @@ export function renderFoundSeries(foundSeries) {
         const genreNames = getGenres(genre_ids);
 
         return `<li class="series-item" data-id=${id}>
-            <img src="${POSTER_URL}${poster_path}" class="movie-poster" alt="movie poster">
+            <img src="${POSTER_URL}${poster_path}" class="series-poster" alt="series poster">
             <div class="series-info">
             <h2 class="series-title">${name}</h2>
             <p class="series-description">${overview}</p>

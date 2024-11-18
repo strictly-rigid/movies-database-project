@@ -194,7 +194,8 @@ nav {
   margin-bottom: 10px;
 }
 
-.movie-description {
+.movie-description,
+.series-description {
   margin-bottom: 10px;
   text-align: justify;
   /* text-indent: 2em; */
@@ -212,10 +213,12 @@ nav {
 
 /* ====================== MODAL ======================  */
 
-.backdrop.is-hidden {
+.backdrop.is-hidden,
+.series-backdrop.is-hidden,
+.person-backdrop.is-hidden {
   opacity: 0;
   visibility: hidden;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 /* .backdrop.is-hidden .modal {
@@ -226,7 +229,7 @@ nav {
 
 .person-backdrop,
 .series-backdrop,
-.movies-backdrop {
+.backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -242,14 +245,14 @@ nav {
   transition: opacity 250ms ease, visibility 250ms ease;
 }
 
-.modal,
+.modal-movies,
 .modal-series,
 .modal-person {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-height: 80vh;
+  max-height: 90vh;
   /* width: 335px; */
   /* max-height: 762px; */
   background-color: var(--background-color);
@@ -279,13 +282,6 @@ nav {
   background-color: var(--primary-color);
   border-radius: 4px;
 } */
-
-.series-backdrop.is-hidden,
-.person-backdrop.is-hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
 
 .backdrop.is-hidden .modal-series,
 .backdrop.is-hidden .modal-person {

@@ -34,7 +34,9 @@ export async function createPersonModalMarkup(data) {
             <p class="place_of_birth"> <span class="modal-bold"> Place of birth:</span> ${
               place_of_birth || 'unknown'
             }</span>
-            <p class="known_for"> <span class="modal-bold"> Known for:</span> ${known_for_department}</p>
+            <p class="known_for"> <span class="modal-bold"> Known for:</span> ${
+              known_for_department || 'No data'
+            }</p>
             <p class="biography"> <span class="modal-bold">Bio:</span> ${
               biography || 'no info'
             }</p>

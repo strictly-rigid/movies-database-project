@@ -4,7 +4,7 @@ export const refs = {
   moviesList: document.querySelector('.movies-list'),
   targetObserverMovies: document.querySelector('.js-guard-movies'),
   targetObserverSearch: document.querySelector('.js-guard-search'),
-  backdrop: document.querySelector('.movies-backdrop'),
+  backdrop: document.querySelector('.backdrop'),
   modalWrapper: document.querySelector('.movie-item-wrapper'),
   endResultsInfo: document.querySelector('.no-results-info-movies'),
   closeBtn: document.querySelector('.modal-close-btn'),
