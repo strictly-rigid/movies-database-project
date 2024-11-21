@@ -1,78 +1,72 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movies database</title>
+    <title>Trending TV Series</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
   </head>
-  <body id="movies-page">
+  <body id="people-page">
     <nav class="nav-bar">
       <div class="nav-wrapper">
         <ul class="nav-list list">
           <li class="nav-item">
-            <a class="nav-links" href="./index.html">Trending Movies</a>
+            <a class="nav-links" href="../index.html">Trending Movies</a>
           </li>
           <li class="nav-item">
-            <a class="nav-links" href="./html/trendingseries.html"
+            <a class="nav-links" href="./trendingseries.html"
               >Trending TV Series</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-links" href="./html/trendingpeople.html"
+            <a class="nav-links" href="./trendingpeople.html"
               >Trending People</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-links" href="./html/favorite.html">Favorite</a>
+            <a class="nav-links" href="./favorite.html">Favorite</a>
           </li>
         </ul>
-
-        <div class="form-container">
-          <form id="search-form" class="search-form">
-            <input type="text" name="searchQuery" placeholder="search movies" />
-            <button type="submit" class="search-btn">Search</button>
-          </form>
-        </div>
       </div>
     </nav>
 
     <main>
       <!-- Data container -->
-      <div class="data-container">
-        <ul class="movies-list"></ul>
-        <div class="js-guard-movies"></div>
+      <div class="favorite-data-container">
+        <ul class="favorite-list"></ul>
+        <div class="js-guard-favorite"></div>
         <div class="js-guard-search"></div>
-        <div class="no-results-info-movies visually-hidden">
-          Sorry, no matching results
+        <div class="no-results-info-people">
+          Add something to favorites to have this information displayed
         </div>
       </div>
 
-      <div class="backdrop is-hidden" data-modal>
-        <div class="modal-movies">
+      <div class="person-backdrop is-hidden" data-modal>
+        <div class="modal-person">
           <button
             id="modal-close"
             type="button"
             class="modal-close-btn"
             data-modal-close
           >
-            <svg class="modal-close-icon" width="20" height="20">
-              <use href="./images/icons.svg#icon-close-modal"></use>
+            <svg class="modal-people-close-icon" width="20" height="20">
+              <use href="../images/icons.svg#icon-close-modal"></use>
             </svg>
           </button>
           <div class="modal-content">
-            <div class="movie-item-wrapper"></div>
+            <div class="person-item-wrapper"></div>
           </div>
         </div>
       </div>
     </main>
 
-    <script type="module" src="./index.js"></script>
+    <!-- <script type="module" src="../index.js"></script> -->
+    <script type="module" src="../js/Favorite/getFavorite.js"></script>
   </body>
 </html>

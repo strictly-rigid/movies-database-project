@@ -354,3 +354,7 @@ nav {
 .modal-bold {
   font-weight: 600;
 }
+
+.person-fav {
+  background-color: aqua;
+}

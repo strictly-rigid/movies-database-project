@@ -5,6 +5,8 @@ const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
 const DEFAULT_IMAGE =
   'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg';
 
+const favoriteList = JSON.parse(localStorage.getItem('favorites')) ?? [];
+
 export async function createPersonModalMarkup(data) {
   const {
     id,
@@ -40,7 +42,8 @@ export async function createPersonModalMarkup(data) {
             <p class="biography"> <span class="modal-bold">Bio:</span> ${
               biography || 'no info'
             }</p>
-            <p class="popularity"> <span class="modal-bold"> Popularity:</span> ${popularity}</span>
+            <p class="popularity"> <span class="modal-bold"> Popularity:</span> ${popularity}</p>
+            <button type="button" class="person-fav">Add to favorites</button>
           </div>`;
 
   refs3.backdrop.classList.remove('is-hidden');
@@ -49,6 +52,10 @@ export async function createPersonModalMarkup(data) {
   refs3.backdrop.addEventListener('click', onBackdropClick);
   window.addEventListener('keydown', onEscKeyPress);
   refs3.closeBtn.addEventListener('click', onModalClose);
+
+  /* ======================  ADD TO FAVORITES ======================  */
+  const addFavBtn = document.querySelector('.person-fav');
+  addFavBtn.addEventListener('click', () => addToFavorites(data));
 }
 
 function onModalClose() {
@@ -71,5 +78,28 @@ function onEscKeyPress(event) {
 function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
     onModalClose();
+  }
+}
+
+function addToFavorites(person) {
+  const inStorage = favoriteList.some(fav => fav.id === person.id);
+  const personItem = {
+    id: person.id,
+    name: person.name,
+    gender: person.gender,
+    birthday: person.birthday,
+    biography: person.biography,
+    knownFor: person.known_for_department,
+    place_of_birth: person.place_of_birth,
+    profile_path: person.profile_path,
+    popularity: person.popularity,
+  };
+
+  if (!inStorage) {
+    favoriteList.push(personItem);
+    localStorage.setItem('favorites', JSON.stringify(favoriteList));
+    alert(`${person.name} has been added to favorites!`);
+  } else {
+    alert(`${person.name} is already in your favorites.`);
   }
 }
