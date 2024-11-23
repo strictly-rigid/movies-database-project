@@ -1,15 +1,20 @@
 import { refs4 } from '../refs4';
 import { genders } from '../constants';
 
-const favoriteList = JSON.parse(localStorage.getItem('favorites')) ?? [];
+let favoriteList = JSON.parse(localStorage.getItem('favorites')) ?? [];
+
 const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
 const DEFAULT_IMAGE =
   'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg';
 
 console.log(favoriteList);
 
+if (favoriteList.length) {
+  refs4.noResultsPeople.classList.add('visually-hidden');
+}
+
 function renderFavoritePeople(people) {
-  const favoritePeople = favoriteList
+  const favoritePeople = people
     .map(
       ({
         id,
@@ -40,17 +45,36 @@ function renderFavoritePeople(people) {
             <p class="known_for"> <span class="modal-bold"> Known for:</span> ${
               knownFor || 'No data'
             }</p>
-            <p class="biography"> <span class="modal-bold">Bio:</span> ${
+            <p class="biography"> <span class="modal-bold"> Bio:</span> ${
               biography || 'no info'
             }</p>
             <p class="popularity"> <span class="modal-bold"> Popularity:</span> ${popularity}</p>
-            <button type="button" class="person-fav">Add to favorites</button>
+            <button type="button" class="delete-btn">Delete from favorites</button>
           </div>`;
       }
     )
     .join('');
 
-  refs4.favWrapper.insertAdjacentHTML('beforeend', favoritePeople);
+  refs4.favPeople.insertAdjacentHTML('beforeend', favoritePeople);
+
+  const deleteBtns = document.querySelectorAll('.delete-btn');
+  deleteBtns.forEach(btn => {
+    btn.addEventListener('click', deleteFromFavorite);
+  });
 }
 
 renderFavoritePeople(favoriteList);
+
+function deleteFromFavorite(event) {
+  const personId = event.target.closest('.person-item-detailed').id;
+
+  favoriteList = favoriteList.filter(person => person.id != personId);
+
+  localStorage.setItem('favorites', JSON.stringify(favoriteList));
+
+  event.target.closest('.person-item-detailed').remove();
+
+  if (favoriteList.length === 0) {
+    refs4.noResultsPeople.classList.remove('visually-hidden');
+  }
+}

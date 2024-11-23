@@ -1,5 +1,8 @@
+import { Notify } from 'notiflix';
+
 import { refs3 } from '../refs3';
 import { genders } from '../constants';
+import { notifyAddSuccess, notifyIsInFavorites } from './notifyWarnings';
 
 const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
 const DEFAULT_IMAGE =
@@ -98,8 +101,8 @@ function addToFavorites(person) {
   if (!inStorage) {
     favoriteList.push(personItem);
     localStorage.setItem('favorites', JSON.stringify(favoriteList));
-    alert(`${person.name} has been added to favorites!`);
+    notifyAddSuccess(person.name);
   } else {
-    alert(`${person.name} is already in your favorites.`);
+    notifyIsInFavorites(person.name);
   }
 }

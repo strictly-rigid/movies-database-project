@@ -358,3 +358,11 @@ nav {
 .person-fav {
   background-color: aqua;
 }
+.delete-btn {
+  background-color: aqua;
+}
+/* ====================== FAVORITES ======================  */
+.no-results {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

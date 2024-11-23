@@ -9,8 +9,6 @@ export function renderTrendingPeople(people) {
   console.log(people);
   const trendingPeople = people
     .map(({ id, name, gender, known_for_department, profile_path }) => {
-      // const titles = known_for.map(item => item.title || item.name).join(', ');
-
       const imageSrc = profile_path
         ? `${POSTER_URL}${profile_path}`
         : DEFAULT_IMAGE;
