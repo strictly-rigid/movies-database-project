@@ -21,21 +21,21 @@ export function notifyNoResults() {
 }
 
 export function notifyAddSuccess(itemName) {
-  Notify.success(`Congrats! ${itemName} was added to your favorites!`, {
+  Notify.success(`${itemName} was added to your favorites!`, {
     timeout: 3000,
     fontSize: '20px',
   });
 }
 
 export function notifyDeleteSuccess(itemName) {
-  Notify.success(`Congrats! ${itemName} was deleted from your favorites!`, {
+  Notify.success(`${itemName} was deleted from your favorites!`, {
     timeout: 3000,
     fontSize: '20px',
   });
 }
 
 export function notifyIsInFavorites(itemName) {
-  Notify.warning(`Sorry, ${itemName} is already in your favorites list!`, {
+  Notify.warning(`${itemName} is already in your favorites list!`, {
     timeout: 3000,
     fontSize: '20px',
   });

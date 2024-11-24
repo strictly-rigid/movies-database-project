@@ -1,5 +1,6 @@
 import { refs4 } from '../refs4';
 import { genders } from '../constants';
+import { notifyDeleteSuccess } from '../helpers/notifyWarnings';
 
 let favoriteList = JSON.parse(localStorage.getItem('favorites')) ?? [];
 
@@ -18,7 +19,7 @@ function renderFavoritePeople(people) {
     .map(
       ({
         id,
-        name,
+        name: personName,
         gender,
         birthday,
         biography,
@@ -32,9 +33,9 @@ function renderFavoritePeople(people) {
           ? `${POSTER_URL}${profile_path}`
           : DEFAULT_IMAGE;
 
-        return `<div class="person-item-detailed" id=${id}>
+        return `<div class="person-item-detailed-fav" id=${id}>
            <img src="${personImg}" class="person-image" alt="person image">
-            <h2 class="modal-name modal-title">${name}</h2>
+            <h2 class="modal-name modal-title" id="personName">${personName}</h2>
             <p class="gender"> <span class="modal-bold"> Gender:</span> ${personGender}</p>
             <p class="birthday"> <span class="modal-bold"> Born:</span> ${
               birthday || 'unknown'
@@ -59,20 +60,26 @@ function renderFavoritePeople(people) {
 
   const deleteBtns = document.querySelectorAll('.delete-btn');
   deleteBtns.forEach(btn => {
-    btn.addEventListener('click', deleteFromFavorite);
+    btn.addEventListener('click', event => {
+      const personItem = event.target.closest('.person-item-detailed-fav');
+      const deletedName = personItem.querySelector('#personName').innerText;
+      deleteFromFavorite(event, deletedName);
+    });
   });
 }
 
 renderFavoritePeople(favoriteList);
 
-function deleteFromFavorite(event) {
-  const personId = event.target.closest('.person-item-detailed').id;
+function deleteFromFavorite(event, personName) {
+  const personId = event.target.closest('.person-item-detailed-fav').id;
 
   favoriteList = favoriteList.filter(person => person.id != personId);
 
   localStorage.setItem('favorites', JSON.stringify(favoriteList));
 
-  event.target.closest('.person-item-detailed').remove();
+  event.target.closest('.person-item-detailed-fav').remove();
+
+  notifyDeleteSuccess(personName);
 
   if (favoriteList.length === 0) {
     refs4.noResultsPeople.classList.remove('visually-hidden');

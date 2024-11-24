@@ -355,14 +355,35 @@ nav {
   font-weight: 600;
 }
 
-.person-fav {
-  background-color: aqua;
-}
+.person-fav,
 .delete-btn {
-  background-color: aqua;
+  margin-top: 5px;
+  padding: 5px;
+  color: var(--background-color);
+  background-color: var(--primary-color);
+  border: 2px solid var(--background-color);
+  border-radius: 5px;
 }
+
 /* ====================== FAVORITES ======================  */
 .no-results {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.favorite-people {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.person-item-detailed-fav {
+  padding: 5px;
+  flex: 1 1 calc(25% - 20px);
+  box-sizing: border-box;
+  max-width: calc(25% - 20px);
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08);
+  border-radius: 5px;
 }
