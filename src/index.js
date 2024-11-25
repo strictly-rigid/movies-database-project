@@ -18,7 +18,6 @@ import {
 } from './js/helpers/notifyWarnings.js';
 
 const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
-const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week';
 
 let query = '';
 let currentPage = 1;

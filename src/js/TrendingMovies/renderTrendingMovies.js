@@ -1,15 +1,6 @@
 import { refs } from '../refs';
 import { URLS, genres } from '../constants';
-
-function getGenres(genre_ids) {
-  return genre_ids
-    .map(id => {
-      const genre = genres.find(g => g.id === id);
-      return genre ? genre.name : '';
-    })
-    .filter(Boolean)
-    .join(', ');
-}
+import { getGenres } from '../helpers/getGenres';
 
 export function renderTrendingMovies(movies) {
   const trendingMovies = movies
@@ -22,7 +13,7 @@ export function renderTrendingMovies(movies) {
         vote_average,
         poster_path,
       }) => {
-        const genreNames = getGenres(genre_ids);
+        const genreNames = getGenres(genre_ids, genres);
         return `<li class="movies-item" data-id=${id}>
             <img src="${
               URLS.POSTER_URL

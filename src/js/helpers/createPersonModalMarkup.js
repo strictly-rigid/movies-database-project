@@ -19,7 +19,6 @@ export async function createPersonModalMarkup(data) {
     profile_path,
     popularity,
   } = data;
-  console.log(data);
 
   const personImg = profile_path
     ? `${URLS.POSTER_URL}${profile_path}`
@@ -66,7 +65,6 @@ function onModalClose() {
   refs3.modalWrapper.innerHTML = '';
 
   refs3.backdrop.classList.add('is-hidden');
-  // document.body.classList.remove('modal-open');
 
   refs3.backdrop.removeEventListener('click', onModalClose);
   refs3.closeBtn.removeEventListener('click', onModalClose);
