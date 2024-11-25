@@ -356,7 +356,11 @@ nav {
 }
 
 .person-fav,
-.delete-btn {
+.movies-fav,
+.series-fav,
+.delete-btn-people,
+.delete-btn-series,
+.delete-btn-movies {
   margin-top: 5px;
   padding: 5px;
   color: var(--background-color);
@@ -371,6 +375,13 @@ nav {
   margin-bottom: 20px;
 }
 
+.fav-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.favorite-movies,
+.favorite-series,
 .favorite-people {
   display: flex;
   flex-wrap: wrap;
@@ -379,6 +390,8 @@ nav {
   padding: 0;
 }
 
+.movie-item-detailed-fav,
+.series-item-detailed-fav,
 .person-item-detailed-fav {
   padding: 5px;
   flex: 1 1 calc(25% - 20px);
@@ -386,4 +399,8 @@ nav {
   max-width: calc(25% - 20px);
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08);
   border-radius: 5px;
+}
+
+.series-item-detailed-fav {
+  padding: 10px;
 }

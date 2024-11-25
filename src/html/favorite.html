@@ -39,9 +39,20 @@
     <main>
       <!-- Data container -->
       <div class="favorite-data-container">
-        <ul class="favorite-movies"></ul>
-        <ul class="favorite-series"></ul>
-        <ul class="favorite-people"></ul>
+        <div class="fav-movies-container fav-container">
+          <h2 class="fav-movies-title visually-hidden">Favorite movies</h2>
+          <ul class="favorite-movies"></ul>
+        </div>
+
+        <div class="fav-series-container fav-container">
+          <h2 class="fav-series-title visually-hidden">Favorite series</h2>
+          <ul class="favorite-series"></ul>
+        </div>
+
+        <div class="fav-people-container fav-container">
+          <h2 class="fav-people-title visually-hidden">Favorite people</h2>
+          <ul class="favorite-people"></ul>
+        </div>
 
         <div class="no-results no-results-info-movies">
           Select favorite movies and they will be displayed here
@@ -52,9 +63,6 @@
         <div class="no-results no-results-info-people">
           Select favorite people and they will be displayed here
         </div>
-
-        <!-- <div class="js-guard-favorite"></div>
-        <div class="js-guard-search"></div> -->
       </div>
 
       <div class="person-backdrop is-hidden" data-modal>

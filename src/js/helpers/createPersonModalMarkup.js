@@ -1,5 +1,3 @@
-import { Notify } from 'notiflix';
-
 import { refs3 } from '../refs3';
 import { genders } from '../constants';
 import { notifyAddSuccess, notifyIsInFavorites } from './notifyWarnings';
@@ -8,7 +6,8 @@ const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
 const DEFAULT_IMAGE =
   'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg';
 
-const favoriteList = JSON.parse(localStorage.getItem('favorites')) ?? [];
+const favoritePeopleList =
+  JSON.parse(localStorage.getItem('favorite_people')) ?? [];
 
 export async function createPersonModalMarkup(data) {
   const {
@@ -85,7 +84,7 @@ function onBackdropClick(event) {
 }
 
 function addToFavorites(person) {
-  const inStorage = favoriteList.some(fav => fav.id === person.id);
+  const inStorage = favoritePeopleList.some(fav => fav.id === person.id);
   const personItem = {
     id: person.id,
     name: person.name,
@@ -93,14 +92,14 @@ function addToFavorites(person) {
     birthday: person.birthday,
     biography: person.biography,
     knownFor: person.known_for_department,
-    place_of_birth: person.place_of_birth,
+    placeOfBirth: person.place_of_birth,
     profile_path: person.profile_path,
     popularity: person.popularity,
   };
 
   if (!inStorage) {
-    favoriteList.push(personItem);
-    localStorage.setItem('favorites', JSON.stringify(favoriteList));
+    favoritePeopleList.push(personItem);
+    localStorage.setItem('favorite_people', JSON.stringify(favoritePeopleList));
     notifyAddSuccess(person.name);
   } else {
     notifyIsInFavorites(person.name);

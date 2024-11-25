@@ -1,6 +1,10 @@
 import { refs2 } from '../refs2';
+import { notifyAddSuccess, notifyIsInFavorites } from './notifyWarnings';
 
 const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
+
+let favoriteSeriesList =
+  JSON.parse(localStorage.getItem('favorite_series')) ?? [];
 
 export async function createSeriesModalMarkup(data) {
   const {
@@ -48,6 +52,8 @@ export async function createSeriesModalMarkup(data) {
          <span class="rating"><span class="modal-bold">Rating:</span> ${vote_average}</span>
          <span class="vote-count"><span class="modal-bold">Total votes:</span> ${vote_count}</span>
          </div>
+
+         <button type="button" class="series-fav">Add to favorites</button>
    
       </div>`;
 
@@ -57,6 +63,10 @@ export async function createSeriesModalMarkup(data) {
   refs2.backdrop.addEventListener('click', onBackdropClick);
   window.addEventListener('keydown', onEscKeyPress);
   refs2.closeBtn.addEventListener('click', onModalClose);
+
+  /* ======================  ADD TO FAVORITES ======================  */
+  const addFavBtn = document.querySelector('.series-fav');
+  addFavBtn.addEventListener('click', () => addToFavorites(data));
 }
 
 function onModalClose() {
@@ -79,5 +89,33 @@ function onEscKeyPress(event) {
 function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
     onModalClose();
+  }
+}
+
+function addToFavorites(series) {
+  const inStorage = favoriteSeriesList.some(fav => fav.id === series.id);
+  const seriesItem = {
+    id: series.id,
+    name: series.name,
+    createdBy: series.created_by,
+    inProduction: series.in_production,
+    languages: series.languages,
+    genres: series.genres,
+    originCountry: series.origin_country,
+    posterPath: series.poster_path,
+    firstAir: series.first_air_date,
+    numberSeasons: series.number_of_seasons,
+    numberEpisodes: series.number_of_episodes,
+    overview: series.overview,
+    voteAverage: series.vote_average,
+    voteCount: series.vote_count,
+  };
+
+  if (!inStorage) {
+    favoriteSeriesList.push(seriesItem);
+    localStorage.setItem('favorite_series', JSON.stringify(favoriteSeriesList));
+    notifyAddSuccess(series.name);
+  } else {
+    notifyIsInFavorites(series.name);
   }
 }

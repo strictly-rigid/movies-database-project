@@ -1,6 +1,10 @@
 import { refs } from '../refs';
+import { notifyAddSuccess, notifyIsInFavorites } from './notifyWarnings';
 
 const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
+
+let favoriteMoviesList =
+  JSON.parse(localStorage.getItem('favorite_movies')) ?? [];
 
 export async function createModalMarkup(data) {
   const {
@@ -41,8 +45,13 @@ export async function createModalMarkup(data) {
           revenue / 1000000
         ).toFixed()} mln</span>
         <p class="runtime"><span class="modal-bold">Time:</span> ${runtime} minutes</p>
+
+         <div class="movies-modal-rate">
         <span class="rating"><span class="modal-bold">Rating:</span> ${vote_average}</span>
         <span class="vote-count"><span class="modal-bold">Total votes:</span> ${vote_count}</span>
+        </div>
+
+        <button type="button" class="movies-fav">Add to favorites</button>
       </div>`;
 
   refs.backdrop.classList.remove('is-hidden');
@@ -51,13 +60,16 @@ export async function createModalMarkup(data) {
   refs.backdrop.addEventListener('click', onBackdropClick);
   window.addEventListener('keydown', onEscKeyPress);
   refs.closeBtn.addEventListener('click', onModalClose);
+
+  /* ======================  ADD TO FAVORITES ======================  */
+  const addFavBtn = document.querySelector('.movies-fav');
+  addFavBtn.addEventListener('click', () => addToFavorites(data));
 }
 
 function onModalClose() {
   refs.modalWrapper.innerHTML = '';
 
   refs.backdrop.classList.add('is-hidden');
-  // document.body.classList.remove('modal-open');
 
   refs.backdrop.removeEventListener('click', onModalClose);
   refs.closeBtn.removeEventListener('click', onModalClose);
@@ -73,5 +85,33 @@ function onEscKeyPress(event) {
 function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
     onModalClose();
+  }
+}
+
+function addToFavorites(movie) {
+  const inStorage = favoriteMoviesList.some(fav => fav.id === movie.id);
+  const movieItem = {
+    id: movie.id,
+    title: movie.title,
+    origTitle: movie.original_title,
+    budget: movie.budget,
+    languages: movie.spoken_languages,
+    genres: movie.genres,
+    originCountry: movie.origin_country,
+    releaseDate: movie.release_date,
+    posterPath: movie.poster_path,
+    revenue: movie.revenue,
+    runtime: movie.runtime,
+    overview: movie.overview,
+    voteAverage: movie.vote_average,
+    voteCount: movie.vote_count,
+  };
+
+  if (!inStorage) {
+    favoriteMoviesList.push(movieItem);
+    localStorage.setItem('favorite_movies', JSON.stringify(favoriteMoviesList));
+    notifyAddSuccess(movie.title);
+  } else {
+    notifyIsInFavorites(movie.title);
   }
 }
