@@ -1,7 +1,7 @@
 import { refs4 } from '../refs4';
-import { notifyDeleteSuccess } from '../helpers/notifyWarnings';
+import { URLS } from '../constants';
 
-const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
+import { notifyDeleteSuccess } from '../helpers/notifyWarnings';
 
 let favoriteMoviesList =
   JSON.parse(localStorage.getItem('favorite_movies')) ?? [];
@@ -29,7 +29,9 @@ export function renderFavoriteMovies(movies) {
         const languagesSpoken = languages.map(language => language).join(', ');
 
         return `<div class="movie-item-detailed-fav" id=${id}>
-        <img src="${POSTER_URL}${posterPath}" class="movie-poster" alt="movie poster">
+        <img src="${
+          URLS.POSTER_URL
+        }${posterPath}" class="movie-poster" alt="movie poster">
         <h2 class="modal-title" id="movieName">${title}</h2>
         <h3 class="modal-original-title"><span class="modal-bold">Original title</span>: ${origTitle}</h3>
         <p class="modal-genres"><span class="modal-bold">Genres:</span> ${genreNames}</p>

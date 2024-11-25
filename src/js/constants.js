@@ -8,6 +8,9 @@ export const URLS = {
   SINGLE_SERIES_URL: 'https://api.themoviedb.org/3/tv',
   SEARCH_PERSON_URL: 'https://api.themoviedb.org/3/search/person',
   SINGLE_PERSON_URL: 'https://api.themoviedb.org/3/person',
+  POSTER_URL: `https://image.tmdb.org/t/p/w500`,
+  DEFAULT_IMAGE:
+    'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg',
 };
 
 export const genres = [
@@ -94,4 +97,16 @@ export const genders = {
   1: 'Female',
   2: 'Male',
   3: 'Non-binary',
+};
+
+export const trendingObserverOptions = {
+  root: null,
+  rootMargin: '400px',
+  threshold: 1.0,
+};
+
+export const searchObserverOptions = {
+  root: null,
+  rootMargin: '400px',
+  threshold: 1.0,
 };

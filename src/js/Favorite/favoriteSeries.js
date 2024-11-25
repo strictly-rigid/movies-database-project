@@ -1,7 +1,7 @@
 import { refs4 } from '../refs4';
-import { notifyDeleteSuccess } from '../helpers/notifyWarnings';
+import { URLS } from '../constants';
 
-const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
+import { notifyDeleteSuccess } from '../helpers/notifyWarnings';
 
 let favoriteSeriesList =
   JSON.parse(localStorage.getItem('favorite_series')) ?? [];
@@ -30,7 +30,7 @@ export function renderFavoriteSeries(series) {
         const creators = createdBy.map(creator => creator.name).join(', ');
 
         return `<div class="series-item-detailed-fav" id=${id}>
-       <img src="${POSTER_URL}${posterPath}" class="series-poster" alt="series poster">
+       <img src="${URLS.POSTER_URL}${posterPath}" class="series-poster" alt="series poster">
         <h2 class="modal-title" id="seriesName">${name}</h2>
         <p class="modal-genres"><span class="modal-bold">Genres:</span> ${genreNames}</p>
        

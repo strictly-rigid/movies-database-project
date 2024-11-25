@@ -1,7 +1,7 @@
 import { refs2 } from '../refs2';
-import { notifyAddSuccess, notifyIsInFavorites } from './notifyWarnings';
+import { URLS } from '../constants';
 
-const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
+import { notifyAddSuccess, notifyIsInFavorites } from './notifyWarnings';
 
 let favoriteSeriesList =
   JSON.parse(localStorage.getItem('favorite_series')) ?? [];
@@ -29,7 +29,7 @@ export async function createSeriesModalMarkup(data) {
   const creators = created_by.map(creator => creator.name).join(', ');
 
   let markup = `<div class="series-item-detailed" id=${id}>
-       <img src="${POSTER_URL}${poster_path}" class="series-poster" alt="series poster">
+       <img src="${URLS.POSTER_URL}${poster_path}" class="series-poster" alt="series poster">
         <h2 class="modal-title">${name}</h2>
         <p class="modal-genres"><span class="modal-bold">Genres:</span> ${genreNames}</p>
        

@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { refs3 } from '../refs3';
-import { URLS } from '../constants';
+import {
+  URLS,
+  trendingObserverOptions,
+  searchObserverOptions,
+} from '../constants';
 import { renderTrendingPeople } from './renderTrendingPeople';
 import { renderFoundPerson } from './renderFoundPerson';
 import { searchPerson } from './searchPerson';
@@ -36,12 +40,6 @@ async function fetchTrendingPeople(key, url, currentPage) {
     isLoading = false;
   }
 }
-
-const trendingObserverOptions = {
-  root: null,
-  rootMargin: '400px',
-  threshold: 1.0,
-};
 
 let trendingObserver = new IntersectionObserver(
   onLoadMoreTrending,
@@ -112,12 +110,6 @@ async function searchByName(e) {
     refs3.form.searchQuery.value = '';
   }
 }
-
-const searchObserverOptions = {
-  root: null,
-  rootMargin: '400px',
-  threshold: 1.0,
-};
 
 let searchObserver = new IntersectionObserver(
   onLoadMoreSearch,

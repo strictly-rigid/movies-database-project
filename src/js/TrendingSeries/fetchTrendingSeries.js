@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { refs2 } from '../refs2';
-import { URLS } from '../constants';
+import {
+  URLS,
+  trendingObserverOptions,
+  searchObserverOptions,
+} from '../constants';
 import { renderTrendingSeries } from './renderTrendingSeries';
 import { renderFoundSeries } from './renderFoundSeries';
 import { searchSeries } from './searchSeries';
@@ -9,8 +13,6 @@ import { createSeriesModalMarkup } from '../helpers/createSeriesModalMarkup';
 import { notifyEndResults, notifyNoResults } from '../helpers/notifyWarnings';
 
 const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
-// const BASE_SERIES_URL = 'https://api.themoviedb.org/3/trending/tv/week';
-// const SEARCH_SERIES_URL = 'https://api.themoviedb.org/3/search/tv';
 let query = '';
 let currentPage = 1;
 let currentSearchPage = 1;
@@ -37,12 +39,6 @@ async function fetchTrendingSeries(key, url, currentPage) {
     isLoading = false;
   }
 }
-
-const trendingObserverOptions = {
-  root: null,
-  rootMargin: '400px',
-  threshold: 1.0,
-};
 
 let trendingObserver = new IntersectionObserver(
   onLoadMoreTrending,
@@ -114,12 +110,6 @@ async function searchByName(e) {
     refs2.form.searchQuery.value = '';
   }
 }
-
-const searchObserverOptions = {
-  root: null,
-  rootMargin: '400px',
-  threshold: 1.0,
-};
 
 let searchObserver = new IntersectionObserver(
   onLoadMoreSearch,

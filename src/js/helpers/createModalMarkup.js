@@ -1,7 +1,6 @@
 import { refs } from '../refs';
+import { URLS } from '../constants';
 import { notifyAddSuccess, notifyIsInFavorites } from './notifyWarnings';
-
-const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
 
 let favoriteMoviesList =
   JSON.parse(localStorage.getItem('favorite_movies')) ?? [];
@@ -30,7 +29,9 @@ export async function createModalMarkup(data) {
     .join(', ');
 
   let markup = `<div class="movie-item-detailed" id=${id}>
-        <img src="${POSTER_URL}${poster_path}" class="movie-poster" alt="movie poster">
+        <img src="${
+          URLS.POSTER_URL
+        }${poster_path}" class="movie-poster" alt="movie poster">
         <h2 class="modal-title">${title}</h2>
         <h3 class="modal-original-title"><span class="modal-bold">Original title</span>: ${original_title}</h3>
         <p class="modal-genres"><span class="modal-bold">Genres:</span> ${genreNames}</p>

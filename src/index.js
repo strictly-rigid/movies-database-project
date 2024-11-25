@@ -1,6 +1,10 @@
 import { refs } from './js/refs';
 import axios from 'axios';
-import { URLS } from './js/constants.js';
+import {
+  URLS,
+  trendingObserverOptions,
+  searchObserverOptions,
+} from './js/constants.js';
 
 import { renderTrendingMovies } from './js/TrendingMovies/renderTrendingMovies.js';
 import { renderFoundMovies } from './js/TrendingMovies/renderFoundMovies.js';
@@ -42,12 +46,6 @@ async function fetchTrendingMovies(key, url, currentPage) {
     isLoading = false;
   }
 }
-
-const trendingObserverOptions = {
-  root: null,
-  rootMargin: '400px',
-  threshold: 1.0,
-};
 
 let trendingObserver = new IntersectionObserver(
   onLoadMoreTrending,
@@ -118,12 +116,6 @@ async function searchByName(e) {
     refs.form.searchQuery.value = '';
   }
 }
-
-const searchObserverOptions = {
-  root: null,
-  rootMargin: '400px',
-  threshold: 1.0,
-};
 
 let searchObserver = new IntersectionObserver(
   onLoadMoreSearch,

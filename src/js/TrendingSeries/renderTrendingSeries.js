@@ -1,6 +1,5 @@
 import { refs2 } from '../refs2.js';
-
-const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
+import { URLS } from '../constants.js';
 
 export function renderTrendingSeries(series) {
   console.log(series);
@@ -14,7 +13,9 @@ export function renderTrendingSeries(series) {
         poster_path,
         first_air_date,
       }) => `<li class="series-item" data-id=${id}>
-            <img src="${POSTER_URL}${poster_path}" class="series-poster" alt="series poster">
+            <img src="${
+              URLS.POSTER_URL
+            }${poster_path}" class="series-poster" alt="series poster">
             <div class="series-info">
             <h2 class="series-title">${name}</h2>
             <p class="series-description">${overview}</p>

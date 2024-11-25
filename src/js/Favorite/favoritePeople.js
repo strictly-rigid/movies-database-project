@@ -1,10 +1,7 @@
 import { refs4 } from '../refs4';
-import { genders } from '../constants';
-import { notifyDeleteSuccess } from '../helpers/notifyWarnings';
+import { genders, URLS } from '../constants';
 
-const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
-const DEFAULT_IMAGE =
-  'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg';
+import { notifyDeleteSuccess } from '../helpers/notifyWarnings';
 
 let favoritePeopleList =
   JSON.parse(localStorage.getItem('favorite_people')) ?? [];
@@ -25,8 +22,8 @@ export function renderFavoritePeople(people) {
       }) => {
         const personGender = genders[gender] || 'Not specified';
         const personImg = profile_path
-          ? `${POSTER_URL}${profile_path}`
-          : DEFAULT_IMAGE;
+          ? `${URLS.POSTER_URL}${profile_path}`
+          : URLS.DEFAULT_IMAGE;
 
         return `<div class="person-item-detailed-fav" id=${id}>
            <img src="${personImg}" class="person-image" alt="person image">

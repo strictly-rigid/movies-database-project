@@ -1,7 +1,5 @@
 import { refs2 } from '../refs2';
-import { genres } from '../constants';
-
-const POSTER_URL = `https://image.tmdb.org/t/p/w500`;
+import { URLS, genres } from '../constants';
 
 function getGenres(genre_ids) {
   return genre_ids
@@ -29,7 +27,9 @@ export function renderFoundSeries(foundSeries) {
         const genreNames = getGenres(genre_ids);
 
         return `<li class="series-item" data-id=${id}>
-            <img src="${POSTER_URL}${poster_path}" class="series-poster" alt="series poster">
+            <img src="${
+              URLS.POSTER_URL
+            }${poster_path}" class="series-poster" alt="series poster">
             <div class="series-info">
             <h2 class="series-title">${name}</h2>
             <p class="series-description">${overview}</p>
