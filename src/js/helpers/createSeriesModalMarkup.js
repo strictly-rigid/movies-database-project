@@ -1,6 +1,7 @@
 import { refs2 } from '../refs2';
 import { URLS } from '../constants';
 
+import { onBackdropClick, onEscKeyPress } from './onCloseFunctions';
 import { notifyAddSuccess, notifyIsInFavorites } from './notifyWarnings';
 
 let favoriteSeriesList =
@@ -60,8 +61,12 @@ export async function createSeriesModalMarkup(data) {
   refs2.backdrop.classList.remove('is-hidden');
   refs2.modalWrapper.innerHTML = markup;
 
-  refs2.backdrop.addEventListener('click', onBackdropClick);
-  window.addEventListener('keydown', onEscKeyPress);
+  refs2.backdrop.addEventListener('click', event =>
+    onBackdropClick(event, onModalClose)
+  );
+  window.addEventListener('keydown', event =>
+    onEscKeyPress(event, onModalClose)
+  );
   refs2.closeBtn.addEventListener('click', onModalClose);
 
   /* ======================  ADD TO FAVORITES ======================  */
@@ -73,23 +78,10 @@ function onModalClose() {
   refs2.modalWrapper.innerHTML = '';
 
   refs2.backdrop.classList.add('is-hidden');
-  // document.body.classList.remove('modal-open');
 
   refs2.backdrop.removeEventListener('click', onModalClose);
   refs2.closeBtn.removeEventListener('click', onModalClose);
   window.removeEventListener('keydown', onEscKeyPress);
-}
-
-function onEscKeyPress(event) {
-  if (event.code === 'Escape') {
-    onModalClose();
-  }
-}
-
-function onBackdropClick(event) {
-  if (event.currentTarget === event.target) {
-    onModalClose();
-  }
 }
 
 function addToFavorites(series) {

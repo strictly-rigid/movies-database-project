@@ -1,5 +1,7 @@
 import { refs } from '../refs';
 import { URLS } from '../constants';
+
+import { onBackdropClick, onEscKeyPress } from './onCloseFunctions';
 import { notifyAddSuccess, notifyIsInFavorites } from './notifyWarnings';
 
 let favoriteMoviesList =
@@ -58,8 +60,12 @@ export async function createModalMarkup(data) {
   refs.backdrop.classList.remove('is-hidden');
   refs.modalWrapper.innerHTML = markup;
 
-  refs.backdrop.addEventListener('click', onBackdropClick);
-  window.addEventListener('keydown', onEscKeyPress);
+  refs.backdrop.addEventListener('click', event =>
+    onBackdropClick(event, onModalClose)
+  );
+  window.addEventListener('keydown', event =>
+    onEscKeyPress(event, onModalClose)
+  );
   refs.closeBtn.addEventListener('click', onModalClose);
 
   /* ======================  ADD TO FAVORITES ======================  */
@@ -75,18 +81,6 @@ function onModalClose() {
   refs.backdrop.removeEventListener('click', onModalClose);
   refs.closeBtn.removeEventListener('click', onModalClose);
   window.removeEventListener('keydown', onEscKeyPress);
-}
-
-function onEscKeyPress(event) {
-  if (event.code === 'Escape') {
-    onModalClose();
-  }
-}
-
-function onBackdropClick(event) {
-  if (event.currentTarget === event.target) {
-    onModalClose();
-  }
 }
 
 function addToFavorites(movie) {

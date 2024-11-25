@@ -1,5 +1,7 @@
 import { refs3 } from '../refs3';
 import { URLS, genders } from '../constants';
+import { onBackdropClick, onEscKeyPress } from './onCloseFunctions';
+
 import { notifyAddSuccess, notifyIsInFavorites } from './notifyWarnings';
 
 const favoritePeopleList =
@@ -47,8 +49,12 @@ export async function createPersonModalMarkup(data) {
   refs3.backdrop.classList.remove('is-hidden');
   refs3.modalWrapper.innerHTML = markup;
 
-  refs3.backdrop.addEventListener('click', onBackdropClick);
-  window.addEventListener('keydown', onEscKeyPress);
+  refs3.backdrop.addEventListener('click', event =>
+    onBackdropClick(event, onModalClose)
+  );
+  window.addEventListener('keydown', event =>
+    onEscKeyPress(event, onModalClose)
+  );
   refs3.closeBtn.addEventListener('click', onModalClose);
 
   /* ======================  ADD TO FAVORITES ======================  */
@@ -65,18 +71,6 @@ function onModalClose() {
   refs3.backdrop.removeEventListener('click', onModalClose);
   refs3.closeBtn.removeEventListener('click', onModalClose);
   window.removeEventListener('keydown', onEscKeyPress);
-}
-
-function onEscKeyPress(event) {
-  if (event.code === 'Escape') {
-    onModalClose();
-  }
-}
-
-function onBackdropClick(event) {
-  if (event.currentTarget === event.target) {
-    onModalClose();
-  }
 }
 
 function addToFavorites(person) {
