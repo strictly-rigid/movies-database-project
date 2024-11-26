@@ -3,7 +3,7 @@ import { URLS, genders } from '../constants';
 
 export function renderFoundPerson(foundPerson) {
   const foundItems = foundPerson
-    .map(({ id, known_for_department, name, gender, profile_path }) => {
+    .map(({ id, name, gender, profile_path }) => {
       const imageSrc = profile_path
         ? `${URLS.POSTER_URL}${profile_path}`
         : URLS.DEFAULT_IMAGE;
