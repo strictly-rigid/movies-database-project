@@ -1,5 +1,6 @@
+import dotenv from 'dotenv';
+
 import { refs } from './js/refs';
-import axios from 'axios';
 import {
   URLS,
   trendingObserverOptions,
@@ -16,28 +17,31 @@ import {
   notifyEndResults,
   notifyNoResults,
 } from './js/helpers/notifyWarnings.js';
+import { fetchData } from './js/helpers/fetchers.js';
+import { setNewObserver } from './js/helpers/setNewObserver.js';
 
-const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
+dotenv.config();
+
+const API_KEY = process.env.API_KEY;
 
 let query = '';
 let currentPage = 1;
 let currentSearchPage = 1;
-let isSearching = false;
 
 /* ====================== TRENDING ======================  */
 
-async function fetchTrendingMovies(key, url, currentPage) {
+async function fetchTrendingMovies(currentPage) {
   try {
-    isLoading = true;
-    const response = await axios.get(
-      `${url}?api_key=${key}&page=${currentPage}`
-    );
+    const response = await fetchData(URLS.BASE_MOVIES_URL, {
+      api_key: API_KEY,
+      page: currentPage,
+    });
 
-    if (response.data.total_pages === currentSearchPage) {
+    if (response.total_pages === currentSearchPage) {
       notifyEndResults();
       trendingObserver.unobserve(refs.targetObserverMovies);
     }
-    const dataMovies = response.data.results;
+    const dataMovies = response.results;
     return dataMovies;
   } catch (error) {
     console.log('Error fetching trending movies:', error.message);
@@ -46,23 +50,23 @@ async function fetchTrendingMovies(key, url, currentPage) {
   }
 }
 
-let trendingObserver = new IntersectionObserver(
+const trendingObserver = setNewObserver(
   onLoadMoreTrending,
   trendingObserverOptions
 );
-function onLoadMoreTrending(entries, observer) {
-  console.log(entries);
+
+function onLoadMoreTrending(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       currentPage += 1;
-      fetchTrendingMovies(API_KEY, URLS.BASE_MOVIES_URL, currentPage).then(
-        data => renderTrendingMovies(data)
-      );
+      fetchTrendingMovies(currentPage).then(data => renderTrendingMovies(data));
     }
   });
 }
 
-fetchTrendingMovies(API_KEY, URLS.BASE_MOVIES_URL, currentPage)
+// Initializing fetch request for trending
+
+fetchTrendingMovies(currentPage)
   .then(data => renderTrendingMovies(data))
   .then(() => trendingObserver.observe(refs.targetObserverMovies))
   .catch(err => console.log(err));
@@ -73,17 +77,12 @@ refs.form.addEventListener('submit', searchByName);
 async function searchByName(e) {
   e.preventDefault();
 
-  trendingObserver.unobserve(refs.targetObserverMovies);
-  searchObserver.unobserve(refs.targetObserverSearch);
-
   refs.backdrop.classList.add('is-hidden');
   query = refs.form.searchQuery.value.trim();
-  currentSearchPage = 1;
+
+  resetState();
 
   try {
-    refs.moviesList.innerHTML = '';
-    refs.endResultsInfo.classList.add('visually-hidden');
-
     const moviesData = await searchMovie(
       API_KEY,
       URLS.SEARCH_MOVIE_URL,
@@ -116,10 +115,17 @@ async function searchByName(e) {
   }
 }
 
-let searchObserver = new IntersectionObserver(
-  onLoadMoreSearch,
-  searchObserverOptions
-);
+function resetState() {
+  trendingObserver.unobserve(refs.targetObserverMovies);
+  searchObserver.unobserve(refs.targetObserverSearch);
+
+  refs.moviesList.innerHTML = '';
+  refs.endResultsInfo.classList.add('visually-hidden');
+
+  currentSearchPage = 1;
+}
+
+const searchObserver = setNewObserver(onLoadMoreSearch, searchObserverOptions);
 
 function onLoadMoreSearch(entries) {
   entries.forEach(entry => {

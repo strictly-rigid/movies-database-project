@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { refs2 } from '../refs2';
 import {
   URLS,
@@ -11,27 +10,28 @@ import { searchSeries } from './searchSeries';
 import { fetchSingleSeries } from './fetchSingleSeries';
 import { createSeriesModalMarkup } from '../helpers/createSeriesModalMarkup';
 import { notifyEndResults, notifyNoResults } from '../helpers/notifyWarnings';
+import { fetchData } from '../helpers/fetchers';
+import { setNewObserver } from '../helpers/setNewObserver';
 
-const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
+const API_KEY = process.env.API_KEY;
 let query = '';
 let currentPage = 1;
 let currentSearchPage = 1;
-let isLoading = false;
 
 /* ====================== TRENDING ======================  */
 
-async function fetchTrendingSeries(key, url, currentPage) {
+async function fetchTrendingSeries(currentPage) {
   try {
-    isLoading = true;
-    const response = await axios.get(
-      `${url}?api_key=${key}&page=${currentPage}`
-    );
-    console.log(response);
-    if (response.data.total_pages === currentSearchPage) {
+    const response = await fetchData(URLS.BASE_SERIES_URL, {
+      api_key: API_KEY,
+      page: currentPage,
+    });
+
+    if (response.total_pages === currentSearchPage) {
       notifyEndResults();
       trendingObserver.unobserve(refs2.targetObserverSeries);
     }
-    const dataSeries = response.data.results;
+    const dataSeries = response.results;
     return dataSeries;
   } catch (error) {
     console.log('Error fetching trending series:', error.message);
@@ -40,23 +40,23 @@ async function fetchTrendingSeries(key, url, currentPage) {
   }
 }
 
-let trendingObserver = new IntersectionObserver(
+const trendingObserver = setNewObserver(
   onLoadMoreTrending,
   trendingObserverOptions
 );
-function onLoadMoreTrending(entries, observer) {
-  console.log(entries);
+
+function onLoadMoreTrending(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       currentPage += 1;
-      fetchTrendingSeries(API_KEY, URLS.BASE_SERIES_URL, currentPage).then(
-        data => renderTrendingSeries(data)
-      );
+      fetchTrendingSeries(currentPage).then(data => renderTrendingSeries(data));
     }
   });
 }
 
-fetchTrendingSeries(API_KEY, URLS.BASE_SERIES_URL, currentPage)
+// Initializing fetch request for trending
+
+fetchTrendingSeries(currentPage)
   .then(data => renderTrendingSeries(data))
   .then(() => trendingObserver.observe(refs2.targetObserverSeries))
   .catch(err => console.log(err));
@@ -68,17 +68,12 @@ refs2.form.addEventListener('submit', searchByName);
 async function searchByName(e) {
   e.preventDefault();
 
-  trendingObserver.unobserve(refs2.targetObserverSeries);
-  searchObserver.unobserve(refs2.targetObserverSearch);
-
   refs2.backdrop.classList.add('is-hidden');
   query = refs2.form.searchQuery.value.trim();
-  currentSearchPage = 1;
+
+  resetState();
 
   try {
-    refs2.seriesList.innerHTML = '';
-    refs2.endResultsInfo.classList.add('visually-hidden');
-
     const seriesData = await searchSeries(
       API_KEY,
       URLS.SEARCH_SERIES_URL,
@@ -111,10 +106,17 @@ async function searchByName(e) {
   }
 }
 
-let searchObserver = new IntersectionObserver(
-  onLoadMoreSearch,
-  searchObserverOptions
-);
+function resetState() {
+  trendingObserver.unobserve(refs2.targetObserverSeries);
+  searchObserver.unobserve(refs2.targetObserverSearch);
+
+  refs2.seriesList.innerHTML = '';
+  refs2.endResultsInfo.classList.add('visually-hidden');
+
+  currentSearchPage = 1;
+}
+
+const searchObserver = setNewObserver(onLoadMoreSearch, searchObserverOptions);
 
 function onLoadMoreSearch(entries) {
   entries.forEach(entry => {

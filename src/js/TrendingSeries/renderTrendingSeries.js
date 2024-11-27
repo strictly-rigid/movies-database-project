@@ -3,7 +3,6 @@ import { URLS, genres } from '../constants.js';
 import { getGenres } from '../helpers/getGenres';
 
 export function renderTrendingSeries(series) {
-  console.log(series);
   const trendingSeries = series
     .map(
       ({

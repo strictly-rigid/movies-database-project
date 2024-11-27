@@ -17,7 +17,7 @@ export function renderFoundPerson(foundPerson) {
               alt="person image"
             />
             <h2 class="person-name">${name}</h2>
-            <p class="person-gender">${personGender}</p>
+            <p class="person-gender">Gender: ${personGender}</p>
           
           </li>`;
     })
