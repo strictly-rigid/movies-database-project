@@ -13,7 +13,9 @@ import { notifyEndResults, notifyNoResults } from '../helpers/notifyWarnings';
 import { fetchData } from '../helpers/fetchers';
 import { setNewObserver } from '../helpers/setNewObserver';
 
-const API_KEY = process.env.API_KEY;
+// const API_KEY = process.env.API_KEY;
+
+const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
 let query = '';
 let currentPage = 1;
 let currentSearchPage = 1;

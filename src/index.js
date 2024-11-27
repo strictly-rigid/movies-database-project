@@ -22,7 +22,8 @@ import { setNewObserver } from './js/helpers/setNewObserver.js';
 
 dotenv.config();
 
-const API_KEY = process.env.API_KEY;
+const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
+// const API_KEY = process.env.API_KEY;
 
 let query = '';
 let currentPage = 1;
@@ -45,7 +46,7 @@ async function fetchTrendingMovies(currentPage) {
     return dataMovies;
   } catch (error) {
     console.log('Error fetching trending movies:', error.message);
-  } 
+  }
 }
 
 const trendingObserver = setNewObserver(
