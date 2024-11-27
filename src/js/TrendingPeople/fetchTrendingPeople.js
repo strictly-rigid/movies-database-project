@@ -35,8 +35,6 @@ async function fetchTrendingPeople(currentPage) {
     return dataPeople;
   } catch (error) {
     console.log('Error fetching trending people:', error.message);
-  } finally {
-    isLoading = false;
   }
 }
 

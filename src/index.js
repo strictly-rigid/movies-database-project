@@ -45,9 +45,7 @@ async function fetchTrendingMovies(currentPage) {
     return dataMovies;
   } catch (error) {
     console.log('Error fetching trending movies:', error.message);
-  } finally {
-    isLoading = false;
-  }
+  } 
 }
 
 const trendingObserver = setNewObserver(

@@ -35,8 +35,6 @@ async function fetchTrendingSeries(currentPage) {
     return dataSeries;
   } catch (error) {
     console.log('Error fetching trending series:', error.message);
-  } finally {
-    isLoading = false;
   }
 }
 
