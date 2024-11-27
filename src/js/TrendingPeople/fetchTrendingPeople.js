@@ -29,7 +29,7 @@ async function fetchTrendingPeople(currentPage) {
 
     if (response.total_pages === currentSearchPage) {
       notifyEndResults();
-      trendingObserver.unobserve(refs3.targetObserverPeople);
+      trendingObserver.unobserve(refs3.targetObserver);
     }
     const dataPeople = response.results;
     return dataPeople;
@@ -58,7 +58,7 @@ function onLoadMoreTrending(entries) {
 
 fetchTrendingPeople(currentPage)
   .then(data => renderTrendingPeople(data))
-  .then(() => trendingObserver.observe(refs3.targetObserverPeople))
+  .then(() => trendingObserver.observe(refs3.targetObserver))
   .catch(err => console.log(err));
 
 /* ====================== SEARCH ======================  */
@@ -107,10 +107,10 @@ async function searchByName(e) {
 }
 
 function resetState() {
-  trendingObserver.unobserve(refs3.targetObserverPeople);
+  trendingObserver.unobserve(refs3.targetObserver);
   searchObserver.unobserve(refs3.targetObserverSearch);
 
-  refs3.peopleList.innerHTML = '';
+  refs3.list.innerHTML = '';
   refs3.endResultsInfo.classList.add('visually-hidden');
 
   currentSearchPage = 1;
@@ -137,7 +137,7 @@ function onLoadMoreSearch(entries) {
 
 /* ====================== PERSON'S DETAILS ======================  */
 
-refs3.peopleContainer.addEventListener('click', onPersonItemClick);
+refs3.dataContainer.addEventListener('click', onPersonItemClick);
 
 async function onPersonItemClick(e) {
   e.preventDefault();

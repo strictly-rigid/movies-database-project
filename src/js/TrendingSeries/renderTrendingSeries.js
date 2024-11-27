@@ -32,5 +32,5 @@ export function renderTrendingSeries(series) {
     )
     .join('');
 
-  refs2.seriesList.insertAdjacentHTML('beforeend', trendingSeries);
+  refs2.list.insertAdjacentHTML('beforeend', trendingSeries);
 }

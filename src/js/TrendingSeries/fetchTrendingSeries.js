@@ -29,7 +29,7 @@ async function fetchTrendingSeries(currentPage) {
 
     if (response.total_pages === currentSearchPage) {
       notifyEndResults();
-      trendingObserver.unobserve(refs2.targetObserverSeries);
+      trendingObserver.unobserve(refs2.targetObserver);
     }
     const dataSeries = response.results;
     return dataSeries;
@@ -58,7 +58,7 @@ function onLoadMoreTrending(entries) {
 
 fetchTrendingSeries(currentPage)
   .then(data => renderTrendingSeries(data))
-  .then(() => trendingObserver.observe(refs2.targetObserverSeries))
+  .then(() => trendingObserver.observe(refs2.targetObserver))
   .catch(err => console.log(err));
 
 /* ====================== SEARCH ======================  */
@@ -107,10 +107,10 @@ async function searchByName(e) {
 }
 
 function resetState() {
-  trendingObserver.unobserve(refs2.targetObserverSeries);
+  trendingObserver.unobserve(refs2.targetObserver);
   searchObserver.unobserve(refs2.targetObserverSearch);
 
-  refs2.seriesList.innerHTML = '';
+  refs2.list.innerHTML = '';
   refs2.endResultsInfo.classList.add('visually-hidden');
 
   currentSearchPage = 1;
@@ -137,7 +137,7 @@ function onLoadMoreSearch(entries) {
 
 /* ======================  SERIES' DETAILS ======================  */
 
-refs2.seriesContainer.addEventListener('click', onSeriesItemClick);
+refs2.dataContainer.addEventListener('click', onSeriesItemClick);
 
 async function onSeriesItemClick(e) {
   e.preventDefault();

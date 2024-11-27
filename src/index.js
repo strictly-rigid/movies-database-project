@@ -39,7 +39,7 @@ async function fetchTrendingMovies(currentPage) {
 
     if (response.total_pages === currentSearchPage) {
       notifyEndResults();
-      trendingObserver.unobserve(refs.targetObserverMovies);
+      trendingObserver.unobserve(refs.targetObserver);
     }
     const dataMovies = response.results;
     return dataMovies;
@@ -68,7 +68,7 @@ function onLoadMoreTrending(entries) {
 
 fetchTrendingMovies(currentPage)
   .then(data => renderTrendingMovies(data))
-  .then(() => trendingObserver.observe(refs.targetObserverMovies))
+  .then(() => trendingObserver.observe(refs.targetObserver))
   .catch(err => console.log(err));
 
 /* ====================== SEARCH ======================  */
@@ -116,10 +116,10 @@ async function searchByName(e) {
 }
 
 function resetState() {
-  trendingObserver.unobserve(refs.targetObserverMovies);
+  trendingObserver.unobserve(refs.targetObserver);
   searchObserver.unobserve(refs.targetObserverSearch);
 
-  refs.moviesList.innerHTML = '';
+  refs.list.innerHTML = '';
   refs.endResultsInfo.classList.add('visually-hidden');
 
   currentSearchPage = 1;
@@ -146,7 +146,7 @@ function onLoadMoreSearch(entries) {
 
 /* ======================  MOVIE'S DETAILS ======================  */
 
-refs.moviesContainer.addEventListener('click', onMoviesItemClick);
+refs.dataContainer.addEventListener('click', onMoviesItemClick);
 
 async function onMoviesItemClick(e) {
   e.preventDefault();

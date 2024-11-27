@@ -36,5 +36,5 @@ export function renderFoundMovies(foundMovies) {
     )
     .join('');
 
-  refs.moviesList.insertAdjacentHTML('beforeend', foundItems);
+  refs.list.insertAdjacentHTML('beforeend', foundItems);
 }

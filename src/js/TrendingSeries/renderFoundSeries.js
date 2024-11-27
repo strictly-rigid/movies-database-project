@@ -36,5 +36,5 @@ export function renderFoundSeries(foundSeries) {
     )
     .join('');
 
-  refs2.seriesList.insertAdjacentHTML('beforeend', foundItems);
+  refs2.list.insertAdjacentHTML('beforeend', foundItems);
 }

@@ -32,5 +32,5 @@ export function renderTrendingMovies(movies) {
     )
     .join('');
 
-  refs.moviesList.insertAdjacentHTML('beforeend', trendingMovies);
+  refs.list.insertAdjacentHTML('beforeend', trendingMovies);
 }

@@ -23,5 +23,5 @@ export function renderFoundPerson(foundPerson) {
     })
     .join('');
 
-  refs3.peopleList.insertAdjacentHTML('beforeend', foundItems);
+  refs3.list.insertAdjacentHTML('beforeend', foundItems);
 }

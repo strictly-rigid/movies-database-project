@@ -1,8 +1,8 @@
 export const refs = {
   form: document.querySelector('.search-form'),
-  moviesContainer: document.querySelector('.data-container'),
-  moviesList: document.querySelector('.movies-list'),
-  targetObserverMovies: document.querySelector('.js-guard-movies'),
+  dataContainer: document.querySelector('.data-container'),
+  list: document.querySelector('.movies-list'),
+  targetObserver: document.querySelector('.js-guard-movies'),
   targetObserverSearch: document.querySelector('.js-guard-search'),
   backdrop: document.querySelector('.backdrop'),
   modalWrapper: document.querySelector('.movie-item-wrapper'),

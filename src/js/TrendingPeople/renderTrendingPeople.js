@@ -27,5 +27,5 @@ export function renderTrendingPeople(people) {
     })
     .join('');
 
-  refs3.peopleList.insertAdjacentHTML('beforeend', trendingPeople);
+  refs3.list.insertAdjacentHTML('beforeend', trendingPeople);
 }
