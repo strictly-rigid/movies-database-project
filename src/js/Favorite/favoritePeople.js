@@ -38,7 +38,7 @@ export function renderFavoritePeople(people) {
             <p class="known_for"> <span class="modal-bold"> Known for:</span> ${
               knownFor || 'No data'
             }</p>
-            <p class="biography"> <span class="modal-bold"> Bio:</span> ${
+            <p class="biography-fav"> <span class="modal-bold"> Bio:</span> ${
               biography || 'no info'
             }</p>
             <p class="popularity"> <span class="modal-bold"> Popularity:</span> ${popularity}</p>

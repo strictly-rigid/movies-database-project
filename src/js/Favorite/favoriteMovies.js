@@ -41,7 +41,7 @@ export function renderFavoriteMovies(movies) {
         <p class="modal-genres"><span class="modal-bold">Genres:</span> ${genreNames}</p>
         <p class="orig-country"><span class="modal-bold">Country of origin:</span> ${originCountry}</p>
         <p class="modal-release-date"><span class="modal-bold">Release date:</span> ${releaseDate}</p>
-        <p class="modal-movie-description"><span class="modal-bold">Desription:</span> ${overview}</p>
+        <p class="movie-description-fav"><span class="modal-bold">Desription:</span> ${overview}</p>
         <p class="languages"><span class="modal-bold">Spoken languages:</span> ${spokenLanguages}</p>
         <span class="budget"><span class="modal-bold">Budget:</span> $${(
           budget / 1000000

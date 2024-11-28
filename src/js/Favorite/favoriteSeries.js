@@ -40,7 +40,7 @@ export function renderFavoriteSeries(series) {
 
      
         <p class="first-air-date"><span class="modal-bold">First air date:</span> ${firstAir}</p>
-        <p class="modal-series-description"><span class="modal-bold">Desription:</span> ${overview}</p>
+        <p class="series-description-fav"><span class="modal-bold">Desription:</span> ${overview}</p>
       
         <p class="created-by"><span class="modal-bold">Creators:</span> ${creators}</p>
         <p class="languages"><span class="modal-bold">Spoken languages:</span> ${languagesSpoken}</p>

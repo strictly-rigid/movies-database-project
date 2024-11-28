@@ -274,11 +274,8 @@ nav {
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.biography,
-.modal-series-description,
-.modal-movie-description {
-  max-height: 200px;
-  overflow-y: auto;
+.modal-content {
+  margin-top: 10px;
 }
 
 .modal-content::-webkit-scrollbar {
@@ -292,21 +289,7 @@ nav {
   transform-origin: center;
 }
 
-/* .modal-close-icon {
-  fill: black;
-  z-index: 999;
-  position: fixed;
-  background-color: red;
-}
-
-.icon-burger {
-  z-index: 999;
-  position: fixed;
-  background-color: red;
-} */
-
 .modal-close-btn {
-  /* fill: black; */
   margin-bottom: 5px;
   position: absolute;
   right: 30px;
@@ -407,7 +390,17 @@ nav {
   padding: 10px;
 }
 
-.series-item-wrapper {
+.movie-item-wrapper,
+.series-item-wrapper,
+.person-item-wrapper {
   max-height: 80vh;
+  overflow-y: auto;
+  font-size: 12px;
+}
+
+.movie-description-fav,
+.series-description-fav,
+.biography-fav {
+  max-height: 200px;
   overflow-y: auto;
 }
