@@ -6,8 +6,6 @@ export async function searchPerson(key, url, searchQuery, page) {
       `${url}?api_key=${key}&query=${searchQuery}&page=${page}`
     );
 
-    console.log(response);
-
     return response;
   } catch (error) {
     console.log('Error fetching person:', error.message);
