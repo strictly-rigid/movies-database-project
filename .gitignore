@@ -1,9 +1,8 @@
 #Junk
-.env
-.env.local
 .DS_Store
 .vscode/
 .idea/
+.env
 
 # Logs
 logs
