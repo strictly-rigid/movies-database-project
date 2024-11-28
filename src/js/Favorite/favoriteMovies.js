@@ -25,8 +25,12 @@ export function renderFavoriteMovies(movies) {
         voteAverage,
         voteCount,
       }) => {
+        console.log(languages);
         const genreNames = genres.map(genre => genre.name).join(', ');
-        const languagesSpoken = languages.map(language => language).join(', ');
+
+        const spokenLanguages = languages
+          .map(language => language.english_name)
+          .join(', ');
 
         return `<div class="movie-item-detailed-fav" id=${id}>
         <img src="${
@@ -38,7 +42,7 @@ export function renderFavoriteMovies(movies) {
         <p class="orig-country"><span class="modal-bold">Country of origin:</span> ${originCountry}</p>
         <p class="modal-release-date"><span class="modal-bold">Release date:</span> ${releaseDate}</p>
         <p class="modal-movie-description"><span class="modal-bold">Desription:</span> ${overview}</p>
-        <p class="languages"><span class="modal-bold">Spoken languages:</span> ${languagesSpoken}</p>
+        <p class="languages"><span class="modal-bold">Spoken languages:</span> ${spokenLanguages}</p>
         <span class="budget"><span class="modal-bold">Budget:</span> $${(
           budget / 1000000
         ).toFixed()} mln</span>
