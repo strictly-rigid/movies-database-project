@@ -8,8 +8,8 @@ API, local storage, modal windows, infinite scroll.
 
 1. Make sure you have an LTS version of Node.js installed on your computer.
    [Download and install](https://nodejs.org/en/) if needed.
-2. Clone this repository (git clone
-   https://github.com/strictly-rigid/movies-database-project.git or with click
-   Open with Github Desktop)
+2. Clone this repository (in your terminal run git clone
+   https://github.com/strictly-rigid/movies-database-project.git or click Open
+   with Github Desktop)
 3. Run npm install in your terminal
 4. Run npm start
