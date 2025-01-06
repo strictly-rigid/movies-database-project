@@ -1,4 +1,4 @@
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
 import { refs } from './js/refs';
 import {
@@ -20,10 +20,11 @@ import {
 import { fetchData } from './js/helpers/fetchers.js';
 import { setNewObserver } from './js/helpers/setNewObserver.js';
 
-// dotenv.config();
-// const API_KEY = process.env.API_KEY;
+dotenv.config();
+const API_KEY = process.env.API_KEY;
+console.log(API_KEY);
 
-const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
+// const API_KEY = '86bcaf318e232372b2e8e2623c959f88';
 
 let query = '';
 let currentPage = 1;
